@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37A0E2BD3CB3D4552D5E5AEC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E733C85EB8F8CB84510396 /* Pods.framework */; };
+		5FF4A22B15B22DCD88EA4D24 /* Pods_DubWars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59559ED15078F48D9C4E84F8 /* Pods_DubWars.framework */; };
 		707BE9181CF08A920071CB52 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */; };
 		707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */; };
 		707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE91B1CF08D0B0071CB52 /* MainViewController.swift */; };
@@ -19,7 +20,9 @@
 		C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */; };
 		C36A7F931CF09D9B00ADC2C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */; };
 		C37F28CE1CF0E70300B6B4DE /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */; };
+		C630827F1CF106D8009EA1D1 /* starwars.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C630827E1CF106D8009EA1D1 /* starwars.jpg */; };
 		C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */; };
+		C65546201CF11B870087E4AF /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655461F1CF11B870087E4AF /* Objects.swift */; };
 		C69FA5461CF09B0F00D5E93F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5451CF09B0F00D5E93F /* Extensions.swift */; };
 		C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */; };
 		C6A33E571CF0CC0000362B29 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A33E561CF0CC0000362B29 /* Globals.swift */; };
@@ -27,9 +30,11 @@
 
 /* Begin PBXFileReference section */
 		44E733C85EB8F8CB84510396 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59559ED15078F48D9C4E84F8 /* Pods_DubWars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DubWars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreboardViewController.swift; path = DubWars/ScoreboardViewController.swift; sourceTree = "<group>"; };
 		707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DubDetailViewController.swift; path = DubWars/DubDetailViewController.swift; sourceTree = "<group>"; };
 		707BE91B1CF08D0B0071CB52 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DubWars/MainViewController.swift; sourceTree = "<group>"; };
+		81FCC4C87463D70621837E4E /* Pods-DubWars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DubWars.release.xcconfig"; path = "Pods/Target Support Files/Pods-DubWars/Pods-DubWars.release.xcconfig"; sourceTree = "<group>"; };
 		C36A7F6F1CF06E8F00ADC2C3 /* DubWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36A7F771CF06E8F00ADC2C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,10 +45,13 @@
 		C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingOverlay.swift; path = DubWars/LoadingOverlay.swift; sourceTree = "<group>"; };
 		C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = big_buck_bunny.mp4; path = DubWars/big_buck_bunny.mp4; sourceTree = "<group>"; };
+		C630827E1CF106D8009EA1D1 /* starwars.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = starwars.jpg; sourceTree = "<group>"; };
 		C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C655461F1CF11B870087E4AF /* Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
 		C69FA5451CF09B0F00D5E93F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubsmashClient.swift; sourceTree = "<group>"; };
 		C6A33E561CF0CC0000362B29 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		F265DF18BEF917A02A1C42DB /* Pods-DubWars.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DubWars.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DubWars/Pods-DubWars.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,7 @@
 			files = (
 				C36A7F931CF09D9B00ADC2C3 /* AVFoundation.framework in Frameworks */,
 				37A0E2BD3CB3D4552D5E5AEC /* Pods.framework in Frameworks */,
+				5FF4A22B15B22DCD88EA4D24 /* Pods_DubWars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +73,7 @@
 			children = (
 				C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */,
 				44E733C85EB8F8CB84510396 /* Pods.framework */,
+				59559ED15078F48D9C4E84F8 /* Pods_DubWars.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -73,9 +83,9 @@
 			children = (
 				C36A7F711CF06E8F00ADC2C3 /* DubWars */,
 				C36A7F701CF06E8F00ADC2C3 /* Products */,
-				E10DABD1538F65E5FE047A94 /* Pods */,
 				1D60FDDC6FF8821DE7336A6B /* Frameworks */,
 				C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */,
+				D3236B83E15BAFF6D3DB2039 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +110,8 @@
 				C69FA5451CF09B0F00D5E93F /* Extensions.swift */,
 				C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */,
 				C6A33E561CF0CC0000362B29 /* Globals.swift */,
+				C655461F1CF11B870087E4AF /* Objects.swift */,
+				C630827E1CF106D8009EA1D1 /* starwars.jpg */,
 			);
 			path = DubWars;
 			sourceTree = "<group>";
@@ -117,6 +129,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		D3236B83E15BAFF6D3DB2039 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F265DF18BEF917A02A1C42DB /* Pods-DubWars.debug.xcconfig */,
+				81FCC4C87463D70621837E4E /* Pods-DubWars.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,12 +145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C36A7F811CF06E8F00ADC2C3 /* Build configuration list for PBXNativeTarget "DubWars" */;
 			buildPhases = (
-				D2884C00F1C9A2855DF957F8 /* Check Pods Manifest.lock */,
+				D2884C00F1C9A2855DF957F8 /* 📦 Check Pods Manifest.lock */,
 				C36A7F6B1CF06E8F00ADC2C3 /* Sources */,
 				C36A7F6C1CF06E8F00ADC2C3 /* Frameworks */,
 				C36A7F6D1CF06E8F00ADC2C3 /* Resources */,
-				B1A32A238EE72966A799FB7C /* Embed Pods Frameworks */,
-				3903EC8F3A08D2A35AF5D978 /* Copy Pods Resources */,
+				B1A32A238EE72966A799FB7C /* 📦 Embed Pods Frameworks */,
+				3903EC8F3A08D2A35AF5D978 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,6 +204,7 @@
 				C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */,
 				C37F28CE1CF0E70300B6B4DE /* big_buck_bunny.mp4 in Resources */,
 				C36A7F7A1CF06E8F00ADC2C3 /* Assets.xcassets in Resources */,
+				C630827F1CF106D8009EA1D1 /* starwars.jpg in Resources */,
 				C36A7F781CF06E8F00ADC2C3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,44 +212,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3903EC8F3A08D2A35AF5D978 /* Copy Pods Resources */ = {
+		3903EC8F3A08D2A35AF5D978 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DubWars/Pods-DubWars-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B1A32A238EE72966A799FB7C /* Embed Pods Frameworks */ = {
+		B1A32A238EE72966A799FB7C /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DubWars/Pods-DubWars-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D2884C00F1C9A2855DF957F8 /* Check Pods Manifest.lock */ = {
+		D2884C00F1C9A2855DF957F8 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,15 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37F28D01CF0E9EB00B6B4DE /* NavigationController.swift in Sources */,
 				C69FA5461CF09B0F00D5E93F /* Extensions.swift in Sources */,
 				707BE9181CF08A920071CB52 /* ScoreboardViewController.swift in Sources */,
 				707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */,
 				C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */,
 				707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */,
 				C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */,
+				C65546201CF11B870087E4AF /* Objects.swift in Sources */,
 				C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */,
-				C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */,
 				C6A33E571CF0CC0000362B29 /* Globals.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,
 			);
@@ -363,7 +384,7 @@
 		};
 		C36A7F821CF06E8F00ADC2C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFB32CFFA313E145F09007A2 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = F265DF18BEF917A02A1C42DB /* Pods-DubWars.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -371,7 +392,7 @@
 				INFOPLIST_FILE = DubWars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dubsmash.dubhack.DubWars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubhack.DubWars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -379,7 +400,7 @@
 		};
 		C36A7F831CF06E8F00ADC2C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A13079DC0F7059C07DC6DFB /* Pods.release.xcconfig */;
+			baseConfigurationReference = 81FCC4C87463D70621837E4E /* Pods-DubWars.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -387,7 +408,7 @@
 				INFOPLIST_FILE = DubWars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dubsmash.dubhack.DubWars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubhack.DubWars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

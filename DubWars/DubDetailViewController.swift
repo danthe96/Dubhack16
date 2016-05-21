@@ -10,15 +10,14 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class DubDetailViewController: ViewController {
+class DubDetailViewController: UIViewController {
     
-    var videoURL: String = "";
+    var videoURL: NSURL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string: videoURL)
-        let player = AVPlayer(URL: url!)
+        let player = AVPlayer(URL: videoURL)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         

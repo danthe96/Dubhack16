@@ -11,20 +11,14 @@ import Firebase
 import FirebaseDatabase
 import SwiftyJSON
 
-class ScoreboardViewController: ViewController {
+class ScoreboardViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var snipId: String = "";
-    private var selectedVideo: String = "";
-    private var dubs: [JSON]?
-    // var currentContest: String;
+    var snipId: String = ""
+    private var selectedVideo: NSURL? = nil
+    var contest: Contest!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.dubs = Globals.contests?[self.snipId]["dubs"].dictionary?.values.map({$0})        
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -32,21 +26,18 @@ class ScoreboardViewController: ViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(dubs?.count)
-        return dubs?.count ?? 0
+        return contest.dubs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("dubCell"),
-            let dub = dubs?[safe: indexPath.row]{
+            let dub = contest.dubs[safe: indexPath.row]{
             print(dub)
             
             let thumbnail = cell.viewWithTag(101) as! UIImageView
-            if let address = dub["video"]["thumbnail"].string,
-                    url = NSURL(string: address){
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    if let data = NSData(contentsOfURL: url){
+                    if let data = NSData(contentsOfURL: dub.thumbnailURL){
                         dispatch_async(dispatch_get_main_queue(), {
                             thumbnail.image = UIImage(data: data)
                             thumbnail.layer.cornerRadius = 10
@@ -57,11 +48,10 @@ class ScoreboardViewController: ViewController {
                         })
                     }
                 })
-            }
             
             let usernameLabel = cell.viewWithTag(102) as! UILabel
             
-            usernameLabel.text = dub["video"]["creator"].string
+            usernameLabel.text = dub.user
             
             return cell
         }
@@ -70,16 +60,15 @@ class ScoreboardViewController: ViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if let dub = dubs?[safe: indexPath.row],
-            videoURL = dub["video"]["video"].string{
-            self.selectedVideo = videoURL
+        if let dub = contest.dubs[safe: indexPath.row]{
+            self.selectedVideo = dub.videoURL
         }
         self.performSegueWithIdentifier("showDubDetailSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showBattleSegue" {
-            if let destination = segue.destinationViewController as? ViewController {
+            if let destination = segue.destinationViewController as? UIViewController {
                 // TODO contest name/sound übergeben
             }
         }

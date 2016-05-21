@@ -37,15 +37,7 @@ class DubsmashClient{
     
     func loadSnip(snipId: String, callback: ((JSON) -> ())?){
         
-        let parameters:[String:AnyObject] = [
-            "username": self.username!,
-            "password": self.password!,
-            "grant_type": "password",
-            "client_id": DubsmashClient.CLIENT_ID,
-            "client_secret": DubsmashClient.CLIENT_SECRET
-        ]
-        
-        Alamofire.request(.GET, "https://dubhack.dubsmash.com/snips/2a5855", parameters: parameters, headers: ["Content-Type": "application/json"])
+        Alamofire.request(.GET, "https://dubhack.dubsmash.com/snips/\(snipId)", parameters: [:], headers: ["Content-Type": "application/json"])
             .responseJSON { response in
                 if let res = response.result.value{
                     let json = JSON(res)
@@ -80,8 +72,6 @@ class DubsmashClient{
                     callback?(self.currentToken)
                 }
         }
-        
-//        timer!.fire()
     }
     
 }

@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 import Firebase
 
-class BattleViewController: ViewController {
+class BattleViewController: UIViewController {
     
     //static let storage = FIRStorage.storage()
     static var videoQueue = [(String, String)]()
@@ -111,6 +111,10 @@ class BattleViewController: ViewController {
     }
     
     func showVotingOverlay() {
+//        let leftTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft))
+//        leftOverlay.addGestureRecognizer(leftTapRecognizer)
+//        let rightTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight))
+//        leftOverlay.addGestureRecognizer(rightTapRecognizer)
         
         let leftOverlay = UIView(frame: leftView.bounds)
         leftOverlay.alpha = 0.0
