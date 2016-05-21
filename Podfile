@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '8.3'
 use_frameworks!
 
 pod 'Firebase/Core'

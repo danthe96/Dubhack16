@@ -80,7 +80,8 @@ class BattleViewController: ViewController {
     var leftPlayer: AVPlayer?
     var rightPlayer: AVPlayer?
     func loadPlayersWithURLs(urls: (NSURL, NSURL)) {
-        leftPlayer = AVPlayer(URL: urls.0)
+        let leftItem = AVPlayerItem(URL: urls.0)
+        leftPlayer = AVPlayer(playerItem: leftItem)
         rightPlayer = AVPlayer(URL: urls.1)
         
         rightPlayer!.muted = true
@@ -91,7 +92,7 @@ class BattleViewController: ViewController {
         rightPlayerLayer.frame = rightView.bounds
         leftView.layer.addSublayer(leftPlayerLayer)
         rightView.layer.addSublayer(rightPlayerLayer)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BattleViewController.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: leftItem)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -101,6 +102,10 @@ class BattleViewController: ViewController {
     func startPlayback() {
         leftPlayer!.play()
         rightPlayer!.play()
+    }
+    
+    func playerDidFinishPlaying() {
+        showVotingOverlay()
     }
     
     func showVotingOverlay() {
