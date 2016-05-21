@@ -13,8 +13,7 @@
 		C36A7F781CF06E8F00ADC2C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */; };
 		C36A7F7A1CF06E8F00ADC2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */; };
 		C36A7F7D1CF06E8F00ADC2C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */; };
-		C63F34DC1CF077290033AA45 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F34DB1CF077290033AA45 /* MainViewController.swift */; };
-		C63F34DE1CF08BFA0033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34DD1CF08BFA0033AA45 /* GoogleService-Info.plist */; };
+		C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +26,7 @@
 		C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C36A7F7C1CF06E8F00ADC2C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C63F34DB1CF077290033AA45 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		C63F34DD1CF08BFA0033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		EFB32CFFA313E145F09007A2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,12 +73,11 @@
 			children = (
 				C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */,
 				C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */,
-				C63F34DB1CF077290033AA45 /* MainViewController.swift */,
+				C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */,
 				C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */,
 				C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */,
 				C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */,
 				C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */,
-				C63F34DD1CF08BFA0033AA45 /* GoogleService-Info.plist */,
 			);
 			path = DubWars;
 			sourceTree = "<group>";
@@ -156,7 +153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C36A7F7D1CF06E8F00ADC2C3 /* LaunchScreen.storyboard in Resources */,
-				C63F34DE1CF08BFA0033AA45 /* GoogleService-Info.plist in Resources */,
 				C36A7F7A1CF06E8F00ADC2C3 /* Assets.xcassets in Resources */,
 				C36A7F781CF06E8F00ADC2C3 /* Main.storyboard in Resources */,
 			);
@@ -217,7 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C63F34DC1CF077290033AA45 /* MainViewController.swift in Sources */,
+				C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */,
 				C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,
 			);
