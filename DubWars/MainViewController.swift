@@ -6,7 +6,7 @@
 
 import Foundation
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class MainViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
  
@@ -23,6 +23,9 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        if let cell = tableView.dequeueReusableCellWithIdentifier("contestCell"){
+            return cell
+        }
         return UITableViewCell(style: .Default, reuseIdentifier: "contestCell")
     }
     

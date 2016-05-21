@@ -18,6 +18,8 @@
 		C36A7F7D1CF06E8F00ADC2C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */; };
 		C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */; };
 		C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */; };
+		C69FA5461CF09B0F00D5E93F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5451CF09B0F00D5E93F /* Constants.swift */; };
+		C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C69FA5451CF09B0F00D5E93F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubsmashClient.swift; sourceTree = "<group>"; };
 		EFB32CFFA313E145F09007A2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +94,8 @@
 				C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */,
 				C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */,
 				C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */,
+				C69FA5451CF09B0F00D5E93F /* Constants.swift */,
+				C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */,
 			);
 			path = DubWars;
 			sourceTree = "<group>";
@@ -226,10 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C69FA5461CF09B0F00D5E93F /* Constants.swift in Sources */,
 				707BE9181CF08A920071CB52 /* ScoreboardViewController.swift in Sources */,
 				707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */,
 				C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */,
 				707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */,
+				C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */,
 				C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,
 			);
