@@ -12,7 +12,6 @@
 		707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */; };
 		707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE91B1CF08D0B0071CB52 /* MainViewController.swift */; };
 		C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */; };
-		C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */; };
 		C36A7F781CF06E8F00ADC2C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */; };
 		C36A7F7A1CF06E8F00ADC2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */; };
 		C36A7F7D1CF06E8F00ADC2C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */; };
@@ -20,7 +19,6 @@
 		C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */; };
 		C36A7F931CF09D9B00ADC2C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */; };
 		C37F28CE1CF0E70300B6B4DE /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */; };
-		C37F28D01CF0E9EB00B6B4DE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37F28CF1CF0E9EB00B6B4DE /* NavigationController.swift */; };
 		C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */; };
 		C69FA5461CF09B0F00D5E93F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5451CF09B0F00D5E93F /* Extensions.swift */; };
 		C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */; };
@@ -29,27 +27,23 @@
 
 /* Begin PBXFileReference section */
 		44E733C85EB8F8CB84510396 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5A13079DC0F7059C07DC6DFB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
-		707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubDetailViewController.swift; sourceTree = "<group>"; };
-		707BE91B1CF08D0B0071CB52 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreboardViewController.swift; path = DubWars/ScoreboardViewController.swift; sourceTree = "<group>"; };
+		707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DubDetailViewController.swift; path = DubWars/DubDetailViewController.swift; sourceTree = "<group>"; };
+		707BE91B1CF08D0B0071CB52 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = DubWars/MainViewController.swift; sourceTree = "<group>"; };
 		C36A7F6F1CF06E8F00ADC2C3 /* DubWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C36A7F771CF06E8F00ADC2C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C36A7F7C1CF06E8F00ADC2C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
-		C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BattleViewController.swift; path = DubWars/BattleViewController.swift; sourceTree = "<group>"; };
+		C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingOverlay.swift; path = DubWars/LoadingOverlay.swift; sourceTree = "<group>"; };
 		C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = big_buck_bunny.mp4; path = DubWars/big_buck_bunny.mp4; sourceTree = "<group>"; };
-		C37F28CF1CF0E9EB00B6B4DE /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C69FA5451CF09B0F00D5E93F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubsmashClient.swift; sourceTree = "<group>"; };
 		C6A33E561CF0CC0000362B29 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
-		EFB32CFFA313E145F09007A2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,15 +90,9 @@
 		C36A7F711CF06E8F00ADC2C3 /* DubWars */ = {
 			isa = PBXGroup;
 			children = (
+				C3B2BD301CF0F76C00E474D4 /* UI */,
 				C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */,
-				C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */,
-				C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */,
-				C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */,
-				C37F28CF1CF0E9EB00B6B4DE /* NavigationController.swift */,
 				C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */,
-				707BE91B1CF08D0B0071CB52 /* MainViewController.swift */,
-				707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */,
-				707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */,
 				C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */,
 				C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */,
 				C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */,
@@ -116,13 +104,17 @@
 			path = DubWars;
 			sourceTree = "<group>";
 		};
-		E10DABD1538F65E5FE047A94 /* Pods */ = {
+		C3B2BD301CF0F76C00E474D4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				EFB32CFFA313E145F09007A2 /* Pods.debug.xcconfig */,
-				5A13079DC0F7059C07DC6DFB /* Pods.release.xcconfig */,
+				C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */,
+				C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */,
+				707BE91B1CF08D0B0071CB52 /* MainViewController.swift */,
+				707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */,
+				707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */,
 			);
-			name = Pods;
+			name = UI;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
