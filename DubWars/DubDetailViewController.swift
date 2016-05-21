@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class DubDetailViewController: ViewController {
+    
+    var videoURL: String = "";
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let url = NSURL(string: videoURL)
+        let player = AVPlayer(URL: url!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        
+        playerViewController.view.frame = self.view.frame
+        self.view.addSubview(playerViewController.view)
+        self.addChildViewController(playerViewController)
+        
+        player.play()
         // Do any additional setup after loading the view.
     }
 

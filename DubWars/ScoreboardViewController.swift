@@ -16,14 +16,14 @@ class ScoreboardViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var snipId: String = "";
+    private var selectedVideo: String = "";
     private var dubs: [JSON]?
     // var currentContest: String;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.dubs = Globals.contests?[self.snipId]["dubs"].array
-        
+        self.dubs = Globals.contests?[self.snipId]["dubs"].dictionary?.values.map({$0})        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +32,7 @@ class ScoreboardViewController: ViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(dubs?.count)
         return dubs?.count ?? 0
     }
     
@@ -39,6 +40,7 @@ class ScoreboardViewController: ViewController {
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("dubCell"),
             let dub = dubs?[safe: indexPath.row]{
+            print(dub)
             
             let thumbnail = cell.viewWithTag(101) as! UIImageView
             if let address = dub["video"]["thumbnail"].string,
@@ -56,25 +58,34 @@ class ScoreboardViewController: ViewController {
                     }
                 })
             }
+            
+            let usernameLabel = cell.viewWithTag(102) as! UILabel
+            
+            usernameLabel.text = dub["video"]["creator"].string
+            
             return cell
         }
         return UITableViewCell(style: .Default, reuseIdentifier: "dubCell")
 
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        if let dub = dubs?[safe: indexPath.row],
+            videoURL = dub["video"]["video"].string{
+            self.selectedVideo = videoURL
+        }
+        self.performSegueWithIdentifier("showDubDetailSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "battle" {
+        if segue.identifier == "showBattleSegue" {
             if let destination = segue.destinationViewController as? ViewController {
                 // TODO contest name/sound übergeben
             }
         }
-        else if segue.identifier == "dubDetail" {
-            if let destination = segue.destinationViewController as? ViewController {
-                // dub infos übergeben
+        else if segue.identifier == "showDubDetailSegue" {
+            if let destination = segue.destinationViewController as? DubDetailViewController {
+                destination.videoURL = self.selectedVideo
             }
         }
     }

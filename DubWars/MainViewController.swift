@@ -86,7 +86,6 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             self.selectedContest = contestId
         }
         self.performSegueWithIdentifier("showScoreboardSegue", sender: self)
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
