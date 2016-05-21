@@ -90,8 +90,10 @@ class BattleViewController: ViewController {
         let rightPlayerLayer = AVPlayerLayer(player: rightPlayer)
         leftPlayerLayer.frame = leftView.bounds
         rightPlayerLayer.frame = rightView.bounds
-        leftView.layer.addSublayer(leftPlayerLayer)
-        rightView.layer.addSublayer(rightPlayerLayer)
+        
+        leftPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        leftView.layer.insertSublayer(leftPlayerLayer, below: leftOverlay.layer)
+        rightView.layer.insertSublayer(rightPlayerLayer, below: rightOverlay.layer)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BattleViewController.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: leftItem)
     }
     
@@ -109,11 +111,15 @@ class BattleViewController: ViewController {
     }
     
     func showVotingOverlay() {
-        let leftTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft))
-        leftOverlay.addGestureRecognizer(leftTapRecognizer)
-        let rightTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight))
-        leftOverlay.addGestureRecognizer(rightTapRecognizer)
         
+        let leftOverlay = UIView(frame: leftView.bounds)
+        leftOverlay.alpha = 0.0
+        self.leftView.addSubview(leftOverlay)
+        let items = [leftOverlay, self.rightOverlay, self.tieButton]
+        items.forEach {
+            $0.alpha = 0.0
+            $0.hidden = false
+        }
         UIView.animateWithDuration(0.25) {
             self.leftOverlay.alpha = 1.0
             self.rightOverlay.alpha = 1.0
@@ -124,13 +130,13 @@ class BattleViewController: ViewController {
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
     
-    func didSelectLeft() {
+    @IBAction func didSelectLeft() {
         UIView.animateWithDuration(0.25) {
             self.leftSelectionLabel.alpha = 1.0
         }
         //TODO: save
     }
-    func didSelectRight() {
+    @IBAction func didSelectRight() {
         UIView.animateWithDuration(0.25) {
             self.rightSelectionLabel.alpha = 1.0
         }
@@ -140,8 +146,9 @@ class BattleViewController: ViewController {
         performSegueWithIdentifier("replace", sender: self)
     }
     
-    
-} 
+}
+
+
 
 class ReplaceSegue: UIStoryboardSegue {
     
