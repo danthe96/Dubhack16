@@ -22,6 +22,7 @@
 		C37F28CE1CF0E70300B6B4DE /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */; };
 		C630827F1CF106D8009EA1D1 /* starwars.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C630827E1CF106D8009EA1D1 /* starwars.jpg */; };
 		C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */; };
+		C65546201CF11B870087E4AF /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655461F1CF11B870087E4AF /* Objects.swift */; };
 		C69FA5461CF09B0F00D5E93F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5451CF09B0F00D5E93F /* Extensions.swift */; };
 		C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */; };
 		C6A33E571CF0CC0000362B29 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A33E561CF0CC0000362B29 /* Globals.swift */; };
@@ -46,6 +47,7 @@
 		C37F28CD1CF0E68000B6B4DE /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = big_buck_bunny.mp4; path = DubWars/big_buck_bunny.mp4; sourceTree = "<group>"; };
 		C630827E1CF106D8009EA1D1 /* starwars.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = starwars.jpg; sourceTree = "<group>"; };
 		C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C655461F1CF11B870087E4AF /* Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
 		C69FA5451CF09B0F00D5E93F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubsmashClient.swift; sourceTree = "<group>"; };
 		C6A33E561CF0CC0000362B29 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				C69FA5451CF09B0F00D5E93F /* Extensions.swift */,
 				C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */,
 				C6A33E561CF0CC0000362B29 /* Globals.swift */,
+				C655461F1CF11B870087E4AF /* Objects.swift */,
 				C630827E1CF106D8009EA1D1 /* starwars.jpg */,
 			);
 			path = DubWars;
@@ -267,6 +270,7 @@
 				C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */,
 				707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */,
 				C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */,
+				C65546201CF11B870087E4AF /* Objects.swift in Sources */,
 				C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */,
 				C6A33E571CF0CC0000362B29 /* Globals.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,

@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class MainViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
     
+    @IBOutlet var battleButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
     private let database = FIRDatabase.database().reference()
@@ -23,6 +24,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        battleButton.layer.cornerRadius = battleButton.frame.width/2
+        battleButton.clipsToBounds = true
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
         
         contestsHandle = database.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             let contestsJSON = JSON(snapshot.value as! [String : AnyObject]!)["dubwars"]["contests"]
@@ -69,17 +76,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             let snipID = contest.id
             let soundName = cell.viewWithTag(103) as! UILabel
             let playButton = cell.viewWithTag(104) as! UIButton
+            playButton.addTarget(self, action: #selector(MainViewController.playButtonClicked(_:)), forControlEvents: .TouchUpInside)
             if let snip = Globals.snips[snipID]{
                 soundName.text = snip["name"].string ?? "Sound name"
-                
-                //TODO
             } else{
                 DubsmashClient.instance.loadSnip(snipID, callback: {snip in
-                    print(snip)
-                    
                     soundName.text = snip["name"].string ?? "Sound name"
-                    
-                    //TODO
                 })
             }
             
@@ -96,6 +98,10 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             self.selectedContest = contest
         }
         self.performSegueWithIdentifier("showScoreboardSegue", sender: self)
+    }
+    
+    func playButtonClicked(sender: UIButton){
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
