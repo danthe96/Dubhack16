@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class ScoreboardViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    private let database = FIRDatabase.database().reference()
+    
+    var snipId: String = "";
+    var dubs: [String: AnyObject]?;
+    // var currentContest: String;
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        database.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            let postDict = (snapshot.value as! [String : [String: String]])["dubwars"] as! [String: String]
+            ö
+            let dubs = postDict!["dubwars"]
+        })
         // Do any additional setup after loading the view.
     }
 
@@ -24,7 +35,7 @@ class ScoreboardViewController: ViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.dubs!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -34,6 +45,20 @@ class ScoreboardViewController: ViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "battle" {
+            if let destination = segue.destinationViewController as? ViewController {
+                // TODO contest name/sound übergeben
+            }
+        }
+        else if segue.identifier == "dubDetail" {
+            if let destination = segue.destinationViewController as? ViewController {
+                // dub infos übergeben
+            }
+        }
+    }
+
 
     
     /*

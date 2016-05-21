@@ -77,4 +77,19 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         return UITableViewCell(style: .Default, reuseIdentifier: "contestCell")
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "battle" {
+            if let destination = segue.destinationViewController as? ViewController {
+                // TODO nichts übergeben bzw contest = all oder sowas
+            }
+        } else if segue.identifier == "showScoreboardSegue" {
+            if let destination = segue.destinationViewController as? ScoreboardViewController {
+                destination.snipId = "2a5855"
+            }
+        }
+    }
 }
