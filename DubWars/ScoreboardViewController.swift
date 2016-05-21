@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ScoreboardViewController: ViewController, UITableViewDelegate, UITableViewDataSource {
+class ScoreboardViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
     private let database = FIRDatabase.database().reference()
