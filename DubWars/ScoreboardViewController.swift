@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScoreboardViewController: ViewController, UITableViewDelegate, UITableViewDataSource {
+class ScoreboardViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
