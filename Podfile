@@ -4,9 +4,5 @@ use_frameworks!
 
 pod 'Firebase/Core'
 pod 'Firebase/Database'
-pod 'Firebase/Crash'
-pod 'Firebase/Storage'
-pod 'Firebase/Auth'
-pod 'Firebase/Messaging'
-pod 'Alamofire', '~> 3.4'
+pod 'Alamofire'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
