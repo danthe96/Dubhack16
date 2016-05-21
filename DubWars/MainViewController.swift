@@ -68,10 +68,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 })
             }
             
-            //TODO
-            
             let contestTitle = cell.viewWithTag(102) as! UILabel
-            contestTitle.text = contest.name
+//            contestTitle.text = contest.name
             
             let snipID = contest.id
             let soundName = cell.viewWithTag(103) as! UILabel
@@ -79,9 +77,11 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             playButton.addTarget(self, action: #selector(MainViewController.playButtonClicked(_:)), forControlEvents: .TouchUpInside)
             if let snip = Globals.snips[snipID]{
                 soundName.text = snip["name"].string ?? "Sound name"
+                contestTitle.text = snip["hashtag"].string ?? ""
             } else{
                 DubsmashClient.instance.loadSnip(snipID, callback: {snip in
                     soundName.text = snip["name"].string ?? "Sound name"
+                    contestTitle.text = snip["hashtag"].string ?? ""
                 })
             }
             
