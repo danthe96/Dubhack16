@@ -17,6 +17,9 @@
 		C36A7F7A1CF06E8F00ADC2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */; };
 		C36A7F7D1CF06E8F00ADC2C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */; };
 		C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */; };
+		C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */; };
+		C36A7F911CF091FB00ADC2C3 /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F901CF091FB00ADC2C3 /* big_buck_bunny.mp4 */; };
+		C36A7F931CF09D9B00ADC2C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */; };
 		C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */; };
 		C69FA5461CF09B0F00D5E93F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5451CF09B0F00D5E93F /* Constants.swift */; };
 		C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */; };
@@ -36,6 +39,9 @@
 		C36A7F7C1CF06E8F00ADC2C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
+		C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		C36A7F901CF091FB00ADC2C3 /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = big_buck_bunny.mp4; sourceTree = "<group>"; };
+		C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C69FA5451CF09B0F00D5E93F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubsmashClient.swift; sourceTree = "<group>"; };
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36A7F931CF09D9B00ADC2C3 /* AVFoundation.framework in Frameworks */,
 				37A0E2BD3CB3D4552D5E5AEC /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +64,7 @@
 		1D60FDDC6FF8821DE7336A6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C36A7F921CF09D9B00ADC2C3 /* AVFoundation.framework */,
 				44E733C85EB8F8CB84510396 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -85,6 +93,7 @@
 			children = (
 				C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */,
 				C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */,
+				C36A7F8E1CF091E700ADC2C3 /* LoadingOverlay.swift */,
 				C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */,
 				C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */,
 				707BE91B1CF08D0B0071CB52 /* MainViewController.swift */,
@@ -96,6 +105,7 @@
 				C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */,
 				C69FA5451CF09B0F00D5E93F /* Constants.swift */,
 				C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */,
+				C36A7F901CF091FB00ADC2C3 /* big_buck_bunny.mp4 */,
 			);
 			path = DubWars;
 			sourceTree = "<group>";
@@ -172,6 +182,7 @@
 			files = (
 				C36A7F7D1CF06E8F00ADC2C3 /* LaunchScreen.storyboard in Resources */,
 				C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */,
+				C36A7F911CF091FB00ADC2C3 /* big_buck_bunny.mp4 in Resources */,
 				C36A7F7A1CF06E8F00ADC2C3 /* Assets.xcassets in Resources */,
 				C36A7F781CF06E8F00ADC2C3 /* Main.storyboard in Resources */,
 			);
@@ -238,6 +249,7 @@
 				C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */,
 				707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */,
 				C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */,
+				C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */,
 				C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,
 			);

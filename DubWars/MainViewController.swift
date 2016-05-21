@@ -11,7 +11,7 @@ import Firebase
 class MainViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
  
     private var contests:[[String:AnyObject?]]? = nil
-    private let database = FIRDatabase.database().reference()
+    //private let database = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
