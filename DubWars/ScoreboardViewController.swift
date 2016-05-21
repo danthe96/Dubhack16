@@ -12,6 +12,8 @@ class ScoreboardViewController: ViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    // var currentContest: String;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +36,19 @@ class ScoreboardViewController: ViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "battle" {
+            if let destination = segue.destinationViewController as? ViewController {
+                // TODO contest name/sound übergeben
+            }
+        } else if segue.identifier == "dubDetail" {
+            if let destination = segue.destinationViewController as? ViewController {
+                // dub infos übergeben
+            }
+        }
+    }
+
 
     
     /*
