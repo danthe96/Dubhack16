@@ -22,6 +22,7 @@
 		C63F34E41CF090E30033AA45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */; };
 		C69FA5461CF09B0F00D5E93F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5451CF09B0F00D5E93F /* Extensions.swift */; };
 		C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */; };
+		C6A33E571CF0CC0000362B29 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A33E561CF0CC0000362B29 /* Globals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C69FA5451CF09B0F00D5E93F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubsmashClient.swift; sourceTree = "<group>"; };
+		C6A33E561CF0CC0000362B29 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		EFB32CFFA313E145F09007A2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 				C63F34E31CF090E30033AA45 /* GoogleService-Info.plist */,
 				C69FA5451CF09B0F00D5E93F /* Extensions.swift */,
 				C69FA5471CF09B9400D5E93F /* DubsmashClient.swift */,
+				C6A33E561CF0CC0000362B29 /* Globals.swift */,
 			);
 			path = DubWars;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				C69FA5481CF09B9400D5E93F /* DubsmashClient.swift in Sources */,
 				C36A7F8F1CF091E700ADC2C3 /* LoadingOverlay.swift in Sources */,
 				C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */,
+				C6A33E571CF0CC0000362B29 /* Globals.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

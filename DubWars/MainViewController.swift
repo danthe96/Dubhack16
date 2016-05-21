@@ -25,6 +25,7 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         
         contestsHandle = database.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             let dict = JSON(snapshot.value as! [String : AnyObject]!)["dubwars"]["contests"]
+            Globals.contests = dict
             self.contests = dict.dictionaryValue.values.map({($0)})
             
             print(snapshot.value)
@@ -77,8 +78,14 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         return UITableViewCell(style: .Default, reuseIdentifier: "contestCell")
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
+    private var selectedContest:String = ""
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        if let contest = contests[safe: indexPath.row],
+            contestId = contest["snipId"].string{
+            selectedContest = contestId
+            self.performSegueWithIdentifier("showScoreboardSegue")
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -88,7 +95,7 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             }
         } else if segue.identifier == "showScoreboardSegue" {
             if let destination = segue.destinationViewController as? ScoreboardViewController {
-                destination.snipId = "2a5855"
+                destination.snipId = self.selectedContest
             }
         }
     }
