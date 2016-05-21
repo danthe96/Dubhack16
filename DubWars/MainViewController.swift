@@ -31,7 +31,6 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             
             self.tableView.reloadData()
             
-            
         })
     }
     
@@ -66,10 +65,9 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             //TODO
             
             let soundName = cell.viewWithTag(103) as! UILabel
-            //TODO
-            
             let playButton = cell.viewWithTag(104) as! UIButton
-            //TODO
+            
+            
             
             let submitButton = cell.viewWithTag(105) as! UIButton
             //TODO
