@@ -19,6 +19,22 @@ class Contest {
         self.name = json["name"].string!
         self.dubs = json["dubs"].dictionary!.values.flatMap {Dub(json: $0["video"])}
     }
+    
+    func createBattle() -> [(Dub, Dub)] {
+        var pool = dubs
+        var selected = [(Dub, Dub)]()
+        
+        for i in 0 ..< pool.count {
+            var other = Int(arc4random_uniform(UInt32(pool.count)))
+            let one = (i + 12345) % pool.count
+            if one == other {
+                other = (other + 1) % pool.count
+            }
+            selected.append((dubs[one], dubs[other]))
+            pool.removeAtIndex(other)
+        }
+        return selected
+    }
 }
 
 class Dub {
@@ -26,6 +42,8 @@ class Dub {
     let videoURL: NSURL
     let snipID: String
     let user: String
+    
+    var timesSelected = 0
     
     init(thumbnailURL: NSURL, videoURL: NSURL, snipID: String, user: String) {
         self.thumbnailURL = thumbnailURL

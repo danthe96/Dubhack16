@@ -14,6 +14,8 @@ import Firebase
 
 class BattleViewController: UIViewController {
     
+    var contest: Contest?
+    
     //static let storage = FIRStorage.storage()
     static var videoQueue = [(String, String)]()
 
@@ -25,7 +27,7 @@ class BattleViewController: UIViewController {
     
     @IBOutlet var tieButton: UIButton!
     
-    var videos: [(String, String)]!
+    var videos: [(Dub, Dub)]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,55 +37,67 @@ class BattleViewController: UIViewController {
         let value = UIInterfaceOrientation.LandscapeRight.rawValue
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
         
+        if let contest = contest {
+            videos = contest.createBattle()
+        } else {
+            return
+        }
         //LoadingOverlay.shared.showOverlay(self.view)
-        downloadAndPlayVideos()
+        initializePlayers()
+        
+        newRound()
+        
     }
     
-    let semaphore = dispatch_semaphore_create(2)
+    let semaphore = dispatch_semaphore_create(0)
     
-    func downloadAndPlayVideos() {
-        /*
-        // Create a reference to the file you want to download
-        let currentVideos = BattleViewController.videoQueue.removeFirst()
-        let video1Ref = storage.child("images/island.jpg")
-        let video2Ref = storage.child("")
+    func newRound() {
+        if videos.count == 0 {
+            self.navigationController!.popViewControllerAnimated(true)
+            return
+        }
+        let (dub1, dub2) = videos.removeLast()
         
-        let firstURL, secondUrl: NSURL?
         // Create local filesystem URL
-        video1Ref.downloadURLWithCompletion { (URL, error) -> Void in
+        NSURLSession.sharedSession().dataTaskWithURL(dub1.videoURL, completionHandler: { data1, response, error in
             if (error != nil) {
                 // Handle any errors
+                LoadingOverlay.shared.hideOverlayView()
             } else {
-                firstURL = URL
+                NSURLSession.sharedSession().dataTaskWithURL(dub2.videoURL, completionHandler: { data2, response, error in
+                    if (error != nil) {
+                        // Handle any errors
+                        LoadingOverlay.shared.hideOverlayView()
+                    } else {
+                        LoadingOverlay.shared.hideOverlayView()
+                        do {
+                            let url1 = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("video1.mp4")
+                        try data1!.writeToURL(url1, options: NSDataWritingOptions.AtomicWrite)
+                            let url2 = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("video2.mp4")
+                            try data2!.writeToURL(url2, options: NSDataWritingOptions.AtomicWrite)
+                        self.loadVideos((url1, url2))
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                            return
+                        }
+                    }
+                    dispatch_semaphore_signal(self.semaphore)
+                }).resume()
             }
-            dispatch_semaphore_signal(semaphore)
-        }
-        video2Ref.downloadURLWithCompletion { (URL, error) -> Void in
-            if (error != nil) {
-                // Handle any errors
-            } else {
-                secondUrl = URL
-            }
-            dispatch_semaphore_signal(semaphore)
-        }
+        }).resume()
         
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-        LoadingOverlay.shared.hideOverlayView()
-        if let firstURL = firstURL, secondUrl = secondUrl {
-            loadPlayersWithURLs(firstURL, secondUrl)
-        }
- */
-        let first = NSBundle.mainBundle().URLForResource("big_buck_bunny", withExtension: "mp4")
-        loadPlayersWithURLs((first!, first!))
+        
+        
+//        let first = NSBundle.mainBundle().URLForResource("big_buck_bunny", withExtension: "mp4")
+//        loadVideos((first!, first!))
     }
     
-    var leftPlayer: AVPlayer?
-    var rightPlayer: AVPlayer?
-    func loadPlayersWithURLs(urls: (NSURL, NSURL)) {
-        let leftItem = AVPlayerItem(URL: urls.0)
-        leftPlayer = AVPlayer(playerItem: leftItem)
-        rightPlayer = AVPlayer(URL: urls.1)
-        
+    var leftPlayer: AVPlayer!
+    var rightPlayer: AVPlayer!
+    
+    func initializePlayers() {
+        leftPlayer = AVPlayer()
+        rightPlayer = AVPlayer()
         rightPlayer!.muted = true
         
         let leftPlayerLayer = AVPlayerLayer(player: leftPlayer)
@@ -91,14 +105,28 @@ class BattleViewController: UIViewController {
         leftPlayerLayer.frame = leftView.bounds
         rightPlayerLayer.frame = rightView.bounds
         
-        leftPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        leftPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
+        rightPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
         leftView.layer.insertSublayer(leftPlayerLayer, below: leftOverlay.layer)
         rightView.layer.insertSublayer(rightPlayerLayer, below: rightOverlay.layer)
+        
+    }
+    
+    func loadVideos(urls: (NSURL, NSURL)) {
+        let test = AVAsset(URL: urls.0)
+        let leftItem = AVPlayerItem(asset: test)
+        let rightItem = AVPlayerItem(URL: NSBundle.mainBundle().URLForResource("big_buck_bunny", withExtension: "mp4")!)
+        leftPlayer.replaceCurrentItemWithPlayerItem(leftItem)
+        rightPlayer.replaceCurrentItemWithPlayerItem(rightItem)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BattleViewController.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: leftItem)
     }
     
     override func viewDidAppear(animated: Bool) {
-        startPlayback()
+        dispatch_async(dispatch_get_main_queue()) {
+            dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+            self.startPlayback()
+        }
     }
     
     func startPlayback() {
@@ -111,16 +139,8 @@ class BattleViewController: UIViewController {
     }
     
     func showVotingOverlay() {
-//        let leftTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft))
-//        leftOverlay.addGestureRecognizer(leftTapRecognizer)
-//        let rightTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight))
-//        leftOverlay.addGestureRecognizer(rightTapRecognizer)
         
-        let leftOverlay = UIView(frame: leftView.bounds)
-        leftOverlay.alpha = 0.0
-        self.leftView.addSubview(leftOverlay)
-        let items = [leftOverlay, self.rightOverlay, self.tieButton]
-        items.forEach {
+        [leftOverlay, rightOverlay, tieButton].forEach {
             $0.alpha = 0.0
             $0.hidden = false
         }
@@ -131,38 +151,29 @@ class BattleViewController: UIViewController {
         }
     }
     
+    func hideVotingOverlay() {
+        UIView.animateWithDuration(0.25) {
+            self.leftOverlay.alpha = 0.0
+            self.rightOverlay.alpha = 0.0
+            self.tieButton.alpha = 0.0
+        }
+    }
+    
+    
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
     
-    @IBAction func didSelectLeft() {
+    @IBAction func didSelectLeft(sender: AnyObject) {
         UIView.animateWithDuration(0.25) {
             self.leftSelectionLabel.alpha = 1.0
         }
         //TODO: save
     }
-    @IBAction func didSelectRight() {
+    
+    @IBAction func didSelectRight(sender: AnyObject) {
         UIView.animateWithDuration(0.25) {
             self.rightSelectionLabel.alpha = 1.0
         }
     }
     
-    func showNextViewController() {
-        performSegueWithIdentifier("replace", sender: self)
-    }
-    
-}
-
-
-
-class ReplaceSegue: UIStoryboardSegue {
-    
-    override func perform() {
-        let navigationController: UINavigationController = sourceViewController.navigationController!
-        
-        var controllerStack = navigationController.viewControllers
-        let index = controllerStack.indexOf(sourceViewController)!
-        controllerStack[index] = destinationViewController
-        
-        navigationController.setViewControllers(controllerStack, animated: true)
-    }
 }
