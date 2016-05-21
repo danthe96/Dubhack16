@@ -6,7 +6,7 @@
 
 import Foundation
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class MainViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
  
@@ -23,12 +23,14 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        if let cell = tableView.dequeueReusableCellWithIdentifier("contestCell"){
+            return cell
+        }
         return UITableViewCell(style: .Default, reuseIdentifier: "contestCell")
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        self.performSegueWithIdentifier("showScoreboardSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -37,8 +39,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 // TODO nichts übergeben bzw contest = all oder sowas
             }
         } else if segue.identifier == "showScoreboardSegue" {
-            if let destination = segue.destinationViewController as? ViewController {
-                // contest übergeben
+            if let destination = segue.destinationViewController as? ScoreboardViewController {
+                destination.snipId = "2a5855"
             }
         }
     }
