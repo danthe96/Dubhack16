@@ -117,6 +117,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="DubWars" id="ank-oP-2QP"/>
+                    <connections>
+                        <outlet property="tableView" destination="MI4-hR-bot" id="Ndr-Lg-SaR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

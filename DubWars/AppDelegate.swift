@@ -12,8 +12,6 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    static let FIREBASE_URL = "https://project-***REMOVED***.firebaseio.com/"
-    
     var window: UIWindow?
     
     override init(){
