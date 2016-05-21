@@ -90,7 +90,10 @@ class BattleViewController: ViewController {
         let rightPlayerLayer = AVPlayerLayer(player: rightPlayer)
         leftPlayerLayer.frame = leftView.bounds
         rightPlayerLayer.frame = rightView.bounds
-        leftView.layer.addSublayer(leftPlayerLayer)
+        
+        leftPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        view.layer.insertSublayer(leftPlayerLayer, below: leftOverlay.layer)
+        //view.layer.addSublayer(leftPlayerLayer)
         rightView.layer.addSublayer(rightPlayerLayer)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BattleViewController.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: leftItem)
     }
@@ -114,6 +117,12 @@ class BattleViewController: ViewController {
         let rightTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight))
         leftOverlay.addGestureRecognizer(rightTapRecognizer)
         
+        let items = [self.leftOverlay, self.rightOverlay, self.tieButton]
+        items.forEach {
+            $0.alpha = 0.0
+            self.view.bringSubviewToFront($0)
+            $0.hidden = false
+        }
         UIView.animateWithDuration(0.25) {
             self.leftOverlay.alpha = 1.0
             self.rightOverlay.alpha = 1.0
