@@ -58,7 +58,7 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                     if let data = NSData(contentsOfURL: firstDub.thumbnailURL){
                         dispatch_async(dispatch_get_main_queue(), {
                             thumbnail.image = UIImage(data: data)
-                            thumbnail.layer.cornerRadius = 10
+                            thumbnail.layer.cornerRadius = thumbnail.frame.width/2
                             thumbnail.clipsToBounds = true
                             
                             thumbnail.setNeedsLayout()

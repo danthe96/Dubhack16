@@ -12,17 +12,39 @@ import FirebaseDatabase
 import SwiftyJSON
 
 class ScoreboardViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var snipId: String = ""
     private var selectedVideo: NSURL? = nil
     var contest: Contest!
     
-
+    @IBOutlet var battleButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        snipId = contest.id
+        
+        battleButton.layer.cornerRadius = battleButton.frame.width/2
+        battleButton.clipsToBounds = true
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func addDub(sender: AnyObject) {
+        if let url = NSURL(string: "https://dbsm.sh/s/\(snipId)"){
+            print(url)
+            UIApplication.sharedApplication().openURL(url)
+        }
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,18 +58,18 @@ class ScoreboardViewController: UIViewController {
             print(dub)
             
             let thumbnail = cell.viewWithTag(101) as! UIImageView
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    if let data = NSData(contentsOfURL: dub.thumbnailURL){
-                        dispatch_async(dispatch_get_main_queue(), {
-                            thumbnail.image = UIImage(data: data)
-                            thumbnail.layer.cornerRadius = 10
-                            thumbnail.clipsToBounds = true
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                if let data = NSData(contentsOfURL: dub.thumbnailURL){
+                    dispatch_async(dispatch_get_main_queue(), {
+                        thumbnail.image = UIImage(data: data)
+                        thumbnail.layer.cornerRadius = thumbnail.frame.width/2
+                        thumbnail.clipsToBounds = true
                         
-                            thumbnail.setNeedsLayout()
-                            thumbnail.layoutIfNeeded()
-                        })
-                    }
-                })
+                        thumbnail.setNeedsLayout()
+                        thumbnail.layoutIfNeeded()
+                    })
+                }
+            })
             
             let usernameLabel = cell.viewWithTag(102) as! UILabel
             
@@ -56,7 +78,7 @@ class ScoreboardViewController: UIViewController {
             return cell
         }
         return UITableViewCell(style: .Default, reuseIdentifier: "dubCell")
-
+        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
@@ -78,17 +100,17 @@ class ScoreboardViewController: UIViewController {
             }
         }
     }
-
-
+    
+    
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
