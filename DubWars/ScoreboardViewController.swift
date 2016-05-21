@@ -22,7 +22,7 @@ class ScoreboardViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.dubs = Globals.contests?[self.snipId]["dubs"].array
+        self.dubs = Globals.contests?[self.snipId]["dubs"].dictionary?.values.map({$0})
         
     }
 

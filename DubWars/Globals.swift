@@ -12,6 +12,6 @@ import SwiftyJSON
 class Globals{
     
     static var contests:JSON? = nil
-    static var snips:JSON? = nil
+    static var snips = [String:JSON]()
     
 }

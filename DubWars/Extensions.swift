@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 extension String{
     func trim() -> String{
@@ -49,6 +50,26 @@ extension NSDate {
         dateFormatter2.timeZone = NSTimeZone()
         
         return dateFormatter1.stringFromDate(date) + ", " + dateFormatter2.stringFromDate(date)
+    }
+}
+
+extension Alamofire.Manager {
+    public class func request(
+        method: Alamofire.Method,
+        URLString: URLStringConvertible,
+          bodyString: String)
+        -> Request
+    {
+        return Manager.sharedInstance.request(
+            method,
+            URLString,
+            parameters: [:],
+            encoding: .Custom({ (convertible, params) in
+                let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+                mutableRequest.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+                return (mutableRequest, nil)
+            })
+        )
     }
 }
 

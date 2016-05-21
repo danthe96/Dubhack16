@@ -65,12 +65,24 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             //TODO
             
             let contestTitle = cell.viewWithTag(102) as! UILabel
-            //TODO
+            contestTitle.text = contest["name"].string ?? "Title"
             
+            let snipID = contest["snipId"].string!
             let soundName = cell.viewWithTag(103) as! UILabel
             let playButton = cell.viewWithTag(104) as! UIButton
-            
-            
+            if let snip = Globals.snips[snipID]{
+                soundName.text = snip["name"].string ?? "Sound name"
+                
+                //TODO
+            } else{
+                DubsmashClient.instance.loadSnip(snipID, callback: {snip in
+                    print(snip)
+                    
+                    soundName.text = snip["name"].string ?? "Sound name"
+                    
+                    //TODO
+                })
+            }
             
             let submitButton = cell.viewWithTag(105) as! UIButton
             //TODO
