@@ -40,6 +40,22 @@ class ScoreboardViewController: ViewController {
         if let cell = tableView.dequeueReusableCellWithIdentifier("dubCell"),
             let dub = dubs?[safe: indexPath.row]{
             
+            let thumbnail = cell.viewWithTag(101) as! UIImageView
+            if let address = dub["video"]["thumbnail"].string,
+                    url = NSURL(string: address){
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    if let data = NSData(contentsOfURL: url){
+                        dispatch_async(dispatch_get_main_queue(), {
+                            thumbnail.image = UIImage(data: data)
+                            thumbnail.layer.cornerRadius = 10
+                            thumbnail.clipsToBounds = true
+                        
+                            thumbnail.setNeedsLayout()
+                            thumbnail.layoutIfNeeded()
+                        })
+                    }
+                })
+            }
             return cell
         }
         return UITableViewCell(style: .Default, reuseIdentifier: "dubCell")

@@ -19,6 +19,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     private var contestsHandle:FIRDatabaseHandle? = nil
     
+     private var selectedContest:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -78,12 +80,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         return UITableViewCell(style: .Default, reuseIdentifier: "contestCell")
     }
     
-    private var selectedContest:String = ""
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if let contest = contests?[safe: indexPath.row],
             contestId = contest["snipId"].string{
-            selectedContest = contestId
+            self.selectedContest = contestId
         }
+        self.performSegueWithIdentifier("showScoreboardSegue", sender: self)
         
     }
     
