@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		37A0E2BD3CB3D4552D5E5AEC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E733C85EB8F8CB84510396 /* Pods.framework */; };
+		707BE9181CF08A920071CB52 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */; };
+		707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */; };
+		707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE91B1CF08D0B0071CB52 /* MainViewController.swift */; };
 		C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */; };
 		C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */; };
 		C36A7F781CF06E8F00ADC2C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		44E733C85EB8F8CB84510396 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A13079DC0F7059C07DC6DFB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
+		707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DubDetailViewController.swift; sourceTree = "<group>"; };
+		707BE91B1CF08D0B0071CB52 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C36A7F6F1CF06E8F00ADC2C3 /* DubWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36A7F721CF06E8F00ADC2C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +81,9 @@
 				C36A7F741CF06E8F00ADC2C3 /* ViewController.swift */,
 				C36A7F881CF0859600ADC2C3 /* BattleViewController.swift */,
 				C36A7F761CF06E8F00ADC2C3 /* Main.storyboard */,
+				707BE91B1CF08D0B0071CB52 /* MainViewController.swift */,
+				707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */,
+				707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */,
 				C36A7F791CF06E8F00ADC2C3 /* Assets.xcassets */,
 				C36A7F7B1CF06E8F00ADC2C3 /* LaunchScreen.storyboard */,
 				C36A7F7E1CF06E8F00ADC2C3 /* Info.plist */,
@@ -213,7 +222,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707BE9181CF08A920071CB52 /* ScoreboardViewController.swift in Sources */,
+				707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */,
 				C36A7F891CF0859600ADC2C3 /* BattleViewController.swift in Sources */,
+				707BE91C1CF08D0B0071CB52 /* MainViewController.swift in Sources */,
 				C36A7F751CF06E8F00ADC2C3 /* ViewController.swift in Sources */,
 				C36A7F731CF06E8F00ADC2C3 /* AppDelegate.swift in Sources */,
 			);
