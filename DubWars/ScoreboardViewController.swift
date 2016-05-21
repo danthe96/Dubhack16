@@ -15,8 +15,6 @@ class ScoreboardViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var snipId: String = ""
-    private var selectedVideo: NSURL? = nil
     var contest: Contest!
     
     @IBOutlet var battleButton: UIButton!
@@ -82,22 +80,24 @@ class ScoreboardViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if let dub = contest.dubs[safe: indexPath.row]{
-            self.selectedVideo = dub.videoURL
-        }
         self.performSegueWithIdentifier("showDubDetailSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showBattleSegue" {
-            if let destination = segue.destinationViewController as? UIViewController {
-                // TODO contest name/sound übergeben
+        switch(segue.identifier ?? "") {
+        case "showBattleSegue":
+            
+            if let destination = segue.destinationViewController as? BattleViewController {
+                destination.contest = self.contest
             }
-        }
-        else if segue.identifier == "showDubDetailSegue" {
+            
+        case "showDubDetailSegue":
             if let destination = segue.destinationViewController as? DubDetailViewController {
-                destination.videoURL = self.selectedVideo
+                let selectedDub = contest.dubs[tableView.indexPathForSelectedRow!.row]
+                destination.videoURL = selectedDub.videoURL
             }
+        default:
+            break
         }
     }
     

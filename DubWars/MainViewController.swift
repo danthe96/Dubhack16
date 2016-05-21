@@ -105,9 +105,11 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "battle" {
-            if let destination = segue.destinationViewController as? UIViewController {
+        if segue.identifier == "showBattleSegue" {
+            if let destination = segue.destinationViewController as? BattleViewController {
                 // TODO nichts übergeben bzw contest = all oder sowas
+                let randomContest = contests[safe: Int(arc4random_uniform(UInt32(contests.count)))]
+                destination.contest = randomContest
             }
         } else if segue.identifier == "showScoreboardSegue" {
             if let destination = segue.destinationViewController as? ScoreboardViewController {
