@@ -8,25 +8,22 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
+import SwiftyJSON
 
 class ScoreboardViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private let database = FIRDatabase.database().reference()
     
     var snipId: String = "";
-    var dubs: [String: AnyObject]?;
+    private var dubs: [JSON]?
     // var currentContest: String;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        database.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            let postDict = (snapshot.value as! [String : [String: String]])["dubwars"] as! [String: String]
-            ö
-            let dubs = postDict!["dubwars"]
-        })
         // Do any additional setup after loading the view.
+        self.dubs = Globals.contests?[self.snipId]["dubs"].array
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,11 +32,18 @@ class ScoreboardViewController: ViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dubs!.count
+        return dubs?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        if let cell = tableView.dequeueReusableCellWithIdentifier("dubCell"),
+            let dub = dubs?[safe: indexPath.row]{
+            
+            return cell
+        }
+        return UITableViewCell(style: .Default, reuseIdentifier: "dubCell")
+
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

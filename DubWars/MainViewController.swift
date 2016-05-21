@@ -80,10 +80,9 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     private var selectedContest:String = ""
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if let contest = contests[safe: indexPath.row],
+        if let contest = contests?[safe: indexPath.row],
             contestId = contest["snipId"].string{
             selectedContest = contestId
-            self.performSegueWithIdentifier("showScoreboardSegue")
         }
         
     }
