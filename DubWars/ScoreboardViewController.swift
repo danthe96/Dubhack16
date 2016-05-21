@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 import SwiftyJSON
 
-class ScoreboardViewController: ViewController {
+class ScoreboardViewController:UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -79,7 +79,7 @@ class ScoreboardViewController: ViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showBattleSegue" {
-            if let destination = segue.destinationViewController as? ViewController {
+            if let destination = segue.destinationViewController as? UIViewController {
                 // TODO contest name/sound übergeben
             }
         }

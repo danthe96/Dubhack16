@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class DubDetailViewController: ViewController {
+class DubDetailViewController: UIViewController {
     
     var videoURL: String = "";
 

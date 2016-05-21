@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 import Firebase
 
-class BattleViewController: ViewController {
+class BattleViewController:UIViewController {
     
     //static let storage = FIRStorage.storage()
     static var videoQueue = [(String, String)]()
