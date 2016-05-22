@@ -387,19 +387,39 @@
                                     <constraint firstAttribute="height" constant="224" id="fdi-UM-XgG"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightsaber_dubsmash" translatesAutoresizingMaskIntoConstraints="NO" id="iDR-4a-9Ql">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightsaber_dubsmash" translatesAutoresizingMaskIntoConstraints="NO" id="iDR-4a-9Ql" customClass="SpringImageView" customModule="Spring">
                                 <rect key="frame" x="28" y="286" width="63" height="284"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="SVc-kS-QlD"/>
                                     <constraint firstAttribute="height" constant="284" id="rEx-sr-uvf"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeRight"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="force">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightsaber_green" translatesAutoresizingMaskIntoConstraints="NO" id="n7O-Nr-yQO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightsaber_green" translatesAutoresizingMaskIntoConstraints="NO" id="n7O-Nr-yQO" customClass="SpringImageView" customModule="Spring">
                                 <rect key="frame" x="511" y="286" width="61" height="284"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="284" id="4Xn-qL-KAw"/>
                                     <constraint firstAttribute="width" constant="61" id="o37-le-My7"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeLeft"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="force">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4I-Gn-wce">
                                 <rect key="frame" x="30" y="30" width="96" height="48"/>

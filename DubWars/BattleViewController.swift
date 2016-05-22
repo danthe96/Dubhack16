@@ -12,6 +12,7 @@ import AVKit
 import AVFoundation
 import Firebase
 import FirebaseDatabase
+import Spring
 
 class BattleViewController: UIViewController {
     
@@ -195,6 +196,7 @@ class BattleViewController: UIViewController {
     
 
      func handleLeftTap(sender: UITapGestureRecognizer) {
+        (greenLightsaber as? SpringImageView)?.animate()
         UIView.animateWithDuration(0.25, animations: {
             self.leftOverlay.backgroundColor = UIColor(redInt: 0x45, greenInt: 0x8B, blueInt: 0x00, alphaInt: 0x80)
             self.leftOverlay.hidden = false
@@ -211,6 +213,10 @@ class BattleViewController: UIViewController {
     }
     
      func handleRightTap(sender: UITapGestureRecognizer) {
+        (dubsmashLightsaber as? SpringImageView)?.animate()
+        (dubsmashLightsaber as? SpringImageView)?.animateNext {
+            (self.dubsmashLightsaber as? SpringImageView)!.rotate = 15
+        }
         UIView.animateWithDuration(0.25, animations: {
             self.rightOverlay.backgroundColor = UIColor(redInt: 0x45, greenInt: 0x8B, blueInt: 0x00, alphaInt: 0x80)
             self.rightOverlay.hidden = false
