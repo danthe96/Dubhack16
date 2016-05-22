@@ -19,6 +19,9 @@ class ScoreboardViewController: UIViewController {
     
     @IBOutlet var battleButton: UIButton!
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -133,6 +136,10 @@ class ScoreboardViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
     
 //    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {

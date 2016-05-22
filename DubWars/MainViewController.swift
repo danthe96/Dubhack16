@@ -23,10 +23,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     private var selectedContest:Contest?
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
         
@@ -44,6 +46,7 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
     }
     
     private var contests = [Contest]() {
@@ -174,7 +177,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-//        return .Portrait
-//    }
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    
+ override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    return .Portrait
+ }
 }

@@ -16,9 +16,20 @@ class Contest {
     let dubs: [Dub]
     
     
-    init(json: JSON) {
-        self.id = json["snipId"].string!
-        self.dubs = json["dubs"].dictionary!.values.flatMap {Dub(json: $0["video"], elo: $0["elo"].int!)}.sort({$0.elo > $1.elo})
+    init?(json: JSON) {
+        if let id = json["snipId"].string, dubValues = json["dubs"].dictionary?.values,
+            dubs = json["dubs"].dictionary?.values.flatMap({ json -> Dub? in
+                if let elo = json["elo"].int {
+                    return Dub(json: json["video"], elo: elo)
+                }
+                return nil
+            }) where dubs.count == json["dubs"].dictionary?.values.count {
+            self.id = id
+            self.dubs = dubValues.flatMap {Dub(json: $0["video"], elo: ($0["elo"].int)!)}.sort({$0.elo > $1.elo})
+        }   else    {
+            print("Error parsing Contest: \(json.rawString() ?? "nil")")
+            return nil
+        }
     }
     
     func createBattle() -> [DubPair] {
@@ -65,11 +76,19 @@ class Dub {
         self.elo = elo
     }
     
-    init(json: JSON, elo:Int) {
-        self.thumbnailURL = NSURL(string: json["thumbnail"].stringValue)!
-        self.videoURL = NSURL(string: json["video"].stringValue)!
-        self.user = json["creator"].string!
-        self.snipID = json["snip"].string!
-        self.elo = elo
+    init?(json: JSON, elo:Int) {
+        if let thumbnailURL = NSURL(string: json["thumbnail"].stringValue),
+        videoURL = NSURL(string: json["video"].stringValue),
+        user = json["creator"].string,
+            snipID = json["snip"].string  {
+            self.thumbnailURL = thumbnailURL
+            self.videoURL = videoURL
+            self.user = user
+            self.snipID = snipID
+            self.elo = elo
+        }   else {
+            print("Error parsing Dub: \(json.rawString() ?? "nil")")
+            return nil
+        }
     }
 }
