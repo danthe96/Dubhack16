@@ -33,6 +33,7 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
+        customizeBackButton()
         
         // dirty hack
         let value = UIInterfaceOrientation.LandscapeRight.rawValue
@@ -172,6 +173,15 @@ class BattleViewController: UIViewController {
         }
     }
     
+    
+    @IBOutlet var backButton: UIButton!
+    func customizeBackButton() {
+//        backButton.clipsToBounds = true
+        backButton.layer.cornerRadius = backButton.bounds.height/2
+    }
+    @IBAction func didSelectBackButton(sender: AnyObject) {
+        navigationController!.popViewControllerAnimated(true)
+    }
     
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!

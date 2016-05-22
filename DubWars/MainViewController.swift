@@ -27,7 +27,6 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
         
@@ -40,6 +39,13 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             self.tableView.reloadData()
             
         })
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "logo.png")!.resizableImageWithCapInsets(UIEdgeInsetsMake(16, 24, 0, 24), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private var contests = [Contest]() {
@@ -95,7 +101,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                     soundName.text = snip["name"].string ?? "Sound name"
                 })
             }
-            
+            let secondaryLabel = cell.viewWithTag(105) as! UILabel
+            secondaryLabel.text = "\(contest.dubs.count) dub\(contest.dubs.count != 1 ? "s" : "")"
             return cell
         }
         return UITableViewCell(style: .Default, reuseIdentifier: "contestCell")
