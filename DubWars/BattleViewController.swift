@@ -102,8 +102,8 @@ class BattleViewController: UIViewController {
         
         let leftPlayerLayer = AVPlayerLayer(player: leftPlayer)
         let rightPlayerLayer = AVPlayerLayer(player: rightPlayer)
-        leftPlayerLayer.frame = leftView.bounds
-        rightPlayerLayer.frame = rightView.bounds
+        leftPlayerLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.height/2, height: self.view.frame.size.width)
+        rightPlayerLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.height/2, height: self.view.frame.size.width)
         
         leftPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
         rightPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
@@ -113,9 +113,8 @@ class BattleViewController: UIViewController {
     }
     
     func loadVideos(urls: (NSURL, NSURL)) {
-        let test = AVAsset(URL: urls.0)
-        let leftItem = AVPlayerItem(asset: test)
-        let rightItem = AVPlayerItem(URL: NSBundle.mainBundle().URLForResource("big_buck_bunny", withExtension: "mp4")!)
+        let leftItem = AVPlayerItem(URL: urls.0)
+        let rightItem = AVPlayerItem(URL: urls.1)
         leftPlayer.replaceCurrentItemWithPlayerItem(leftItem)
         rightPlayer.replaceCurrentItemWithPlayerItem(rightItem)
         
