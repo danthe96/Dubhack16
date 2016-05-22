@@ -171,6 +171,7 @@ class BattleViewController: UIViewController {
             self.leftSelectionLabel.alpha = 1.0
         }
         submitVoting(forId: contest!.id, winningUser: dub1!.user, losingUser: dub2!.user)
+        newRound()
     }
     
     @IBAction func didSelectRight(sender: AnyObject) {
@@ -178,6 +179,7 @@ class BattleViewController: UIViewController {
             self.rightSelectionLabel.alpha = 1.0
         }
         submitVoting(forId: contest!.id, winningUser: dub2!.user, losingUser: dub1!.user)
+        newRound()
     }
     
     private let database = FIRDatabase.database().reference()

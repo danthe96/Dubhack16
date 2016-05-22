@@ -27,8 +27,6 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        battleButton.layer.cornerRadius = battleButton.frame.width/2
-        battleButton.clipsToBounds = true
         
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
@@ -44,7 +42,22 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
-    private var contests = [Contest]()
+    private var contests = [Contest]() {
+        didSet {
+            updateBattleVisibility()
+        }
+    }
+    
+    func updateBattleVisibility() {
+        for contest in contests {
+            if contest.dubs.count > 1   {
+                battleButton.hidden = false
+                return
+            }
+            battleButton.hidden = true
+        }
+    }
+    
     internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         self.contests = Globals.contests
         return contests.count
@@ -144,8 +157,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showBattleSegue" {
             if let destination = segue.destinationViewController as? BattleViewController {
-                // TODO nichts übergeben bzw contest = all oder sowas
-                let randomContest = contests[safe: Int(arc4random_uniform(UInt32(contests.count)))]
+                let eligibleContests = contests.filter {$0.dubs.count > 1}
+                let randomContest = eligibleContests[safe: Int(arc4random_uniform(UInt32(contests.count)))]
                 destination.contest = randomContest
             }
         } else if segue.identifier == "showScoreboardSegue" {
