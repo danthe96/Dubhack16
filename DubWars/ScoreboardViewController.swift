@@ -30,7 +30,11 @@ class ScoreboardViewController: UIViewController {
         
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
         self.navigationItem.title = Globals.snips[contest.id]?["name"].string ?? "test"
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewWillDisappear(animated: Bool) {
