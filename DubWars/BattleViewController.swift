@@ -30,7 +30,7 @@ class BattleViewController: UIViewController {
     @IBOutlet var leftOverlay: UIView!
     @IBOutlet var rightOverlay: UIView!
     
-    @IBOutlet var tieButton: UIButton!
+    @IBOutlet var backButton: UIButton!
     
     var myParentVC: UIViewController!
     
@@ -40,8 +40,8 @@ class BattleViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
         
-        tieButton.clipsToBounds = true
-        tieButton.layer.cornerRadius = 32
+        backButton.clipsToBounds = true
+        backButton.layer.cornerRadius = 8
         
         // dirty hack
         let value = UIInterfaceOrientation.LandscapeRight.rawValue
@@ -56,10 +56,6 @@ class BattleViewController: UIViewController {
         //LoadingOverlay.shared.showOverlay(self.view)
         initializePlayers()
         
-        let leftTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft(_:)))
-        leftOverlay.addGestureRecognizer(leftTap)
-        let rightTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight(_:)))
-        rightOverlay.addGestureRecognizer(rightTap)
         
         newRound()
         
@@ -132,7 +128,6 @@ class BattleViewController: UIViewController {
         
         let leftTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleLeftTap:"))
         leftView.addGestureRecognizer(leftTapGesture)
-        
         let rightTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleRightTap:"))
         rightView.addGestureRecognizer(rightTapGesture)
         
@@ -168,30 +163,24 @@ class BattleViewController: UIViewController {
         self.leftPlayer.play()
     }
     
-    func showVotingOverlay() {
-        
-        [leftOverlay, rightOverlay, tieButton].forEach {
-            $0.alpha = 0.0
-            $0.hidden = false
-        }
-        UIView.animateWithDuration(0.25) {
-            self.leftOverlay.alpha = 1.0
-            self.rightOverlay.alpha = 1.0
-            self.tieButton.alpha = 1.0
-            self.tieButton.hidden = false
-        }
-    }
-    
-    func hideVotingOverlay() {
-        UIView.animateWithDuration(0.25) {
-            self.leftOverlay.alpha = 0.0
-            self.rightOverlay.alpha = 0.0
-            self.tieButton.alpha = 0.0
-            self.tieButton.hidden = true
-        }
-    }
-    
-
+//    func showVotingOverlay() {
+//        
+//        [leftOverlay, rightOverlay].forEach {
+//            $0.alpha = 0.0
+//            $0.hidden = false
+//        }
+//        UIView.animateWithDuration(0.25) {
+//            self.leftOverlay.alpha = 1.0
+//            self.rightOverlay.alpha = 1.0
+//        }
+//    }
+//    
+//    func hideVotingOverlay() {
+//        UIView.animateWithDuration(0.25) {
+//            self.leftOverlay.alpha = 0.0
+//            self.rightOverlay.alpha = 0.0
+//        }
+//    }
 
     
     @IBOutlet var leftSelectionLabel: UILabel!
@@ -200,14 +189,13 @@ class BattleViewController: UIViewController {
 
      func handleLeftTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.25, animations: {
-            self.leftOverlay.alpha = 1.0
-            self.leftOverlay.tintColor = UIColor.greenColor()
+            self.leftOverlay.backgroundColor = UIColor(redInt: 0x45, greenInt: 0x8B, blueInt: 0x00, alphaInt: 0x80)
+            self.leftOverlay.hidden = false
             }, completion: { _ in
                 self.newRound()
                 delay(0.25) {
                     UIView.animateWithDuration(0.25, animations: {
-                        self.leftOverlay.alpha = 0.0
-                        self.rightOverlay.tintColor = BattleViewController.colorLeft
+                        self.leftOverlay.hidden = true
                         }, completion: {_ in
                             self.startPlaybackWhenReady()
                     })
@@ -218,13 +206,12 @@ class BattleViewController: UIViewController {
     
      func handleRightTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.25, animations: {
-            self.rightOverlay.alpha = 1.0
-            self.rightOverlay.tintColor = UIColor.greenColor()
+            self.rightOverlay.backgroundColor = UIColor(redInt: 0x45, greenInt: 0x8B, blueInt: 0x00, alphaInt: 0x80)
+            self.rightOverlay.hidden = false
             }, completion: { _ in
                 self.newRound()
                 UIView.animateWithDuration(0.25, animations: {
-                    self.rightOverlay.alpha = 0.0
-                    self.rightOverlay.tintColor = BattleViewController.colorRight
+                    self.rightOverlay.hidden = true
                     }, completion: {_ in
                         self.startPlaybackWhenReady()
                 })
