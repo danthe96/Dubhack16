@@ -52,6 +52,9 @@ class BattleViewController: UIViewController {
             return
         }
         //LoadingOverlay.shared.showOverlay(self.view)
+        
+        dubsmashLightsaber.transform = CGAffineTransformMakeRotation((15 * CGFloat(M_PI)) / 180.0)
+        greenLightsaber.transform = CGAffineTransformMakeRotation((345 * CGFloat(M_PI)) / 180.0)
         initializePlayers()
         
         
