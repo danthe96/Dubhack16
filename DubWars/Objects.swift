@@ -10,13 +10,11 @@ import Foundation
 import SwiftyJSON
 
 class Contest {
-    let name: String
     let id: String
     let dubs: [Dub]
     
     init(json: JSON) {
         self.id = json["snipId"].string!
-        self.name = json["name"].string!
         self.dubs = json["dubs"].dictionary!.values.flatMap {Dub(json: $0["video"], elo: $0["elo"].int!)}.sort({$0.elo > $1.elo})
     }
     
@@ -24,14 +22,15 @@ class Contest {
         var pool = dubs
         var selected = [(Dub, Dub)]()
         
-        for i in 0 ..< pool.count {
-            var other = Int(arc4random_uniform(UInt32(pool.count)))
-            let one = (i + 12345) % pool.count
-            if one == other {
-                other = (other + 1) % pool.count
-            }
-            selected.append((dubs[one], dubs[other]))
+        while pool.count > 1 {
+            let other = Int(arc4random_uniform(UInt32(pool.count)))
+            let dub1 = pool[other]
             pool.removeAtIndex(other)
+            let one = Int(arc4random_uniform(UInt32(pool.count)))
+            let dub2 = pool[one]
+            pool.removeAtIndex(one)
+            
+            selected.append((dub1, dub2))
         }
         return selected
     }
