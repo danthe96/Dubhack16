@@ -48,6 +48,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+        if self.window?.rootViewController?.presentedViewController is BattleViewController {
+            
+            let secondController = self.window!.rootViewController!.presentedViewController as! BattleViewController
+            
+            if secondController.isBeingPresented() {
+                
+                return UIInterfaceOrientationMask.Landscape;
+                
+            } else {
+                
+                return UIInterfaceOrientationMask.Portrait;
+            }
+            
+        } else {
+            
+            return UIInterfaceOrientationMask.Portrait;
+        }
+    }
+    
     
 }
 

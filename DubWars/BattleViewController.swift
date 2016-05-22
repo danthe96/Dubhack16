@@ -18,9 +18,12 @@ class BattleViewController: UIViewController {
     var contest: Contest?
     var videos: [(Dub, Dub)]?
     
+    static let colorRight = UIColor(red: 0xBB, green: 0x3F, blue: 0x61)
+    static let colorLeft = UIColor(red: 0xE8, green: 0xA1, blue: 0x3F)
+    
     //static let storage = FIRStorage.storage()
     static var videoQueue = [(String, String)]()
-
+    
     @IBOutlet var leftView: UIView!
     @IBOutlet var rightView: UIView!
     
@@ -32,10 +35,13 @@ class BattleViewController: UIViewController {
     var myParentVC: UIViewController!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
-        customizeBackButton()
+        
+        tieButton.clipsToBounds = true
+        tieButton.layer.cornerRadius = 32
         
         // dirty hack
         let value = UIInterfaceOrientation.LandscapeRight.rawValue
@@ -50,6 +56,11 @@ class BattleViewController: UIViewController {
         //LoadingOverlay.shared.showOverlay(self.view)
         initializePlayers()
         
+        let leftTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft(_:)))
+        leftOverlay.addGestureRecognizer(leftTap)
+        let rightTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight(_:)))
+        rightOverlay.addGestureRecognizer(rightTap)
+        
         newRound()
         
     }
@@ -60,7 +71,7 @@ class BattleViewController: UIViewController {
     func newRound() {
         semaphore = dispatch_semaphore_create(0)
         if videos?.count == 0 {
-            self.navigationController!.popToViewController(myParentVC, animated: true)
+            self.performSegueWithIdentifier("exit", sender: self)
             return
         }
         let (dub1, dub2) = videos!.removeLast()
@@ -81,10 +92,10 @@ class BattleViewController: UIViewController {
                         LoadingOverlay.shared.hideOverlayView()
                         do {
                             let url1 = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("video1.mp4")
-                        try data1!.writeToURL(url1, options: NSDataWritingOptions.AtomicWrite)
+                            try data1!.writeToURL(url1, options: NSDataWritingOptions.AtomicWrite)
                             let url2 = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("video2.mp4")
                             try data2!.writeToURL(url2, options: NSDataWritingOptions.AtomicWrite)
-                        self.loadVideos((url1, url2))
+                            self.loadVideos((url1, url2))
                         } catch let error as NSError {
                             print(error.localizedDescription)
                             return
@@ -97,8 +108,8 @@ class BattleViewController: UIViewController {
         
         
         
-//        let first = NSBundle.mainBundle().URLForResource("big_buck_bunny", withExtension: "mp4")
-//        loadVideos((first!, first!))
+        //        let first = NSBundle.mainBundle().URLForResource("big_buck_bunny", withExtension: "mp4")
+        //        loadVideos((first!, first!))
     }
     
     var leftPlayer: AVPlayer!
@@ -118,6 +129,12 @@ class BattleViewController: UIViewController {
         rightPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
         leftView.layer.insertSublayer(leftPlayerLayer, below: leftOverlay.layer)
         rightView.layer.insertSublayer(rightPlayerLayer, below: rightOverlay.layer)
+        
+        let leftTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleLeftTap:"))
+        leftView.addGestureRecognizer(leftTapGesture)
+        
+        let rightTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleRightTap:"))
+        rightView.addGestureRecognizer(rightTapGesture)
         
     }
     
@@ -144,7 +161,11 @@ class BattleViewController: UIViewController {
     }
     
     func playerDidFinishPlaying() {
-        showVotingOverlay()
+        let t1 = CMTimeMake(5, 100);
+        self.leftPlayer.seekToTime(t1)
+        self.rightPlayer.seekToTime(t1)
+        self.rightPlayer.play()
+        self.leftPlayer.play()
     }
     
     func showVotingOverlay() {
@@ -157,6 +178,7 @@ class BattleViewController: UIViewController {
             self.leftOverlay.alpha = 1.0
             self.rightOverlay.alpha = 1.0
             self.tieButton.alpha = 1.0
+            self.tieButton.hidden = false
         }
     }
     
@@ -165,30 +187,27 @@ class BattleViewController: UIViewController {
             self.leftOverlay.alpha = 0.0
             self.rightOverlay.alpha = 0.0
             self.tieButton.alpha = 0.0
+            self.tieButton.hidden = true
         }
     }
     
-    @IBOutlet var backButton: UIButton!
-    func customizeBackButton() {
-        backButton.clipsToBounds = true
-        backButton.layer.cornerRadius = backButton.bounds.height/2
-        backButton.userInteractionEnabled = true
-    }
-    @IBAction func didSelectBackButton(sender: AnyObject) {
-        self.navigationController!.popToViewController(myParentVC, animated: true)
-    }
+
+
     
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
     
-    @IBAction func didSelectLeft(sender: AnyObject) {
+
+     func handleLeftTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.25, animations: {
             self.leftOverlay.alpha = 1.0
+            self.leftOverlay.tintColor = UIColor.greenColor()
             }, completion: { _ in
                 self.newRound()
                 delay(0.25) {
                     UIView.animateWithDuration(0.25, animations: {
                         self.leftOverlay.alpha = 0.0
+                        self.rightOverlay.tintColor = BattleViewController.colorLeft
                         }, completion: {_ in
                             self.startPlaybackWhenReady()
                     })
@@ -197,13 +216,15 @@ class BattleViewController: UIViewController {
         submitVoting(forId: dub1!.snipID, winningUser: dub1!.user, losingUser: dub2!.user)
     }
     
-    @IBAction func didSelectRight(sender: AnyObject) {
+     func handleRightTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.25, animations: {
             self.rightOverlay.alpha = 1.0
+            self.rightOverlay.tintColor = UIColor.greenColor()
             }, completion: { _ in
                 self.newRound()
                 UIView.animateWithDuration(0.25, animations: {
                     self.rightOverlay.alpha = 0.0
+                    self.rightOverlay.tintColor = BattleViewController.colorRight
                     }, completion: {_ in
                         self.startPlaybackWhenReady()
                 })
@@ -223,8 +244,11 @@ class BattleViewController: UIViewController {
         let updates = ["/\(key)": entry]
         votes.updateChildValues(updates)
     }
-    
-//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-//        return .Landscape
-//    }
+
+     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Landscape
+  }
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 }
