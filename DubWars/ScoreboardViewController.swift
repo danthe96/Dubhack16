@@ -63,9 +63,7 @@ class ScoreboardViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("dubCell"),
-            let dub = contest.dubs[safe: indexPath.row]{
-            print(dub)
-            
+            let dub = contest.dubs[safe: indexPath.row]{            
             let thumbnail = cell.viewWithTag(101) as! UIImageView
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 if let data = NSData(contentsOfURL: dub.thumbnailURL){
@@ -100,6 +98,7 @@ class ScoreboardViewController: UIViewController {
             
             if let destination = segue.destinationViewController as? BattleViewController {
                 destination.contest = self.contest
+                destination.myParentVC = self
             }
             
         case "showDubDetailSegue":
@@ -112,7 +111,9 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
-    
+//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return .Portrait
+//    }
     
     /*
      // MARK: - Navigation

@@ -32,10 +32,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         
         contestsHandle = database.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             let contestsJSON = JSON(snapshot.value as! [String : AnyObject]!)["dubwars"]["contests"]
-            Globals.contests = contestsJSON.dictionaryValue.flatMap {Contest(json: $0.1)}
-            
-            print(snapshot.value)
-            
+            Globals.contests = contestsJSON.dictionaryValue.flatMap {Contest(json: $0.1)}.sort{ $0.0.dubs.count > $0.1.dubs.count }
+                        
             self.tableView.reloadData()
             
         })
@@ -165,8 +163,9 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         if segue.identifier == "showBattleSegue" {
             if let destination = segue.destinationViewController as? BattleViewController {
                 let eligibleContests = contests.filter {$0.dubs.count > 1}
-                let randomContest = eligibleContests[safe: Int(arc4random_uniform(UInt32(contests.count)))]
-                destination.contest = randomContest
+                let multiContest = Contest.createMultiBattle(eligibleContests)
+                destination.videos = multiContest
+                destination.myParentVC = self
             }
         } else if segue.identifier == "showScoreboardSegue" {
             if let destination = segue.destinationViewController as? ScoreboardViewController {
@@ -174,4 +173,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
+    
+//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return .Portrait
+//    }
 }

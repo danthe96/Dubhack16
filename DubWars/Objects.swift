@@ -9,16 +9,19 @@
 import Foundation
 import SwiftyJSON
 
+typealias DubPair = (Dub, Dub)
+
 class Contest {
     let id: String
     let dubs: [Dub]
+    
     
     init(json: JSON) {
         self.id = json["snipId"].string!
         self.dubs = json["dubs"].dictionary!.values.flatMap {Dub(json: $0["video"], elo: $0["elo"].int!)}.sort({$0.elo > $1.elo})
     }
     
-    func createBattle() -> [(Dub, Dub)] {
+    func createBattle() -> [DubPair] {
         var pool = dubs
         var selected = [(Dub, Dub)]()
         
@@ -34,12 +37,21 @@ class Contest {
         }
         return selected
     }
+    
+    class func createMultiBattle(contests: [Contest]) -> [DubPair]  {
+        return contests.map { $0.createBattle() }
+            .reduce([(Dub, Dub)](), combine: {(accumulator, new) -> [DubPair] in
+                var accumulator = accumulator
+                accumulator.appendContentsOf(new)
+                return accumulator
+        })
+    }
 }
 
 class Dub {
     let thumbnailURL: NSURL
     let videoURL: NSURL
-    let snipID: String
+    let snipID: String  // i.e. contestId
     let user: String
     let elo: Int
     

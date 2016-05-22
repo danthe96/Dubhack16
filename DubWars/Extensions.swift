@@ -83,4 +83,22 @@ extension UIColor{
         self.init(redInt:red, greenInt:green, blueInt:blue, alphaInt: 0xff)
     }
 }
+
+func delay(delay:Double, closure:()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(), closure)
+}
+
+//extension UINavigationController {
+//    override public func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return visibleViewController?.supportedInterfaceOrientations() ?? super.supportedInterfaceOrientations()
+//    }
+//    public override func shouldAutorotate() -> Bool {
+//        return visibleViewController?.shouldAutorotate() ?? super.shouldAutorotate()
+//    }
+//}
     

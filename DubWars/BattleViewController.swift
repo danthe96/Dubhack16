@@ -16,6 +16,7 @@ import FirebaseDatabase
 class BattleViewController: UIViewController {
     
     var contest: Contest?
+    var videos: [(Dub, Dub)]?
     
     //static let storage = FIRStorage.storage()
     static var videoQueue = [(String, String)]()
@@ -28,7 +29,8 @@ class BattleViewController: UIViewController {
     
     @IBOutlet var tieButton: UIButton!
     
-    var videos: [(Dub, Dub)]!
+    var myParentVC: UIViewController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,8 @@ class BattleViewController: UIViewController {
         
         if let contest = contest {
             videos = contest.createBattle()
-        } else {
+        } else if videos == nil {
+            delay(0.25) { self.navigationController!.popToViewController(self.myParentVC, animated: true) }
             return
         }
         //LoadingOverlay.shared.showOverlay(self.view)
@@ -51,15 +54,16 @@ class BattleViewController: UIViewController {
         
     }
     
-    let semaphore = dispatch_semaphore_create(0)
+    var semaphore: dispatch_semaphore_t! = dispatch_semaphore_create(0)
     
     var dub1, dub2: Dub?
     func newRound() {
-        if videos.count == 0 {
-            self.navigationController!.popViewControllerAnimated(true)
+        semaphore = dispatch_semaphore_create(0)
+        if videos?.count == 0 {
+            self.navigationController!.popToViewController(myParentVC, animated: true)
             return
         }
-        let (dub1, dub2) = videos.removeLast()
+        let (dub1, dub2) = videos!.removeLast()
         self.dub1 = dub1
         self.dub2 = dub2
         
@@ -127,15 +131,16 @@ class BattleViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
-            dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
-            self.startPlayback()
-        }
+        startPlaybackWhenReady()
     }
     
-    func startPlayback() {
-        leftPlayer!.play()
-        rightPlayer!.play()
+    func startPlaybackWhenReady() {
+        dispatch_async(dispatch_get_main_queue()) {
+            dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+            self.leftPlayer!.play()
+            self.rightPlayer!.play()
+        }
+        
     }
     
     func playerDidFinishPlaying() {
@@ -163,33 +168,47 @@ class BattleViewController: UIViewController {
         }
     }
     
-    
     @IBOutlet var backButton: UIButton!
     func customizeBackButton() {
-//        backButton.clipsToBounds = true
+        backButton.clipsToBounds = true
         backButton.layer.cornerRadius = backButton.bounds.height/2
+        backButton.userInteractionEnabled = true
     }
     @IBAction func didSelectBackButton(sender: AnyObject) {
-        navigationController!.popViewControllerAnimated(true)
+        self.navigationController!.popToViewController(myParentVC, animated: true)
     }
     
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
     
     @IBAction func didSelectLeft(sender: AnyObject) {
-        UIView.animateWithDuration(0.25) {
-            self.leftSelectionLabel.alpha = 1.0
-        }
-        submitVoting(forId: contest!.id, winningUser: dub1!.user, losingUser: dub2!.user)
-        newRound()
+        UIView.animateWithDuration(0.25, animations: {
+            self.leftOverlay.alpha = 1.0
+            }, completion: { _ in
+                self.newRound()
+                delay(0.25) {
+                    UIView.animateWithDuration(0.25, animations: {
+                        self.leftOverlay.alpha = 0.0
+                        }, completion: {_ in
+                            self.startPlaybackWhenReady()
+                    })
+                }
+        })
+        submitVoting(forId: dub1!.snipID, winningUser: dub1!.user, losingUser: dub2!.user)
     }
     
     @IBAction func didSelectRight(sender: AnyObject) {
-        UIView.animateWithDuration(0.25) {
-            self.rightSelectionLabel.alpha = 1.0
-        }
-        submitVoting(forId: contest!.id, winningUser: dub2!.user, losingUser: dub1!.user)
-        newRound()
+        UIView.animateWithDuration(0.25, animations: {
+            self.rightOverlay.alpha = 1.0
+            }, completion: { _ in
+                self.newRound()
+                UIView.animateWithDuration(0.25, animations: {
+                    self.rightOverlay.alpha = 0.0
+                    }, completion: {_ in
+                        self.startPlaybackWhenReady()
+                })
+        })
+        submitVoting(forId: dub1!.snipID, winningUser: dub2!.user, losingUser: dub1!.user)
     }
     
     private let database = FIRDatabase.database().reference()
@@ -205,4 +224,7 @@ class BattleViewController: UIViewController {
         votes.updateChildValues(updates)
     }
     
+//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return .Landscape
+//    }
 }
