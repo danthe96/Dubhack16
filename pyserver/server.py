@@ -4,6 +4,7 @@ import os
 import hashlib
 import base64
 import math
+import time
 
 firebase = Firebase('https://project-***REMOVED***.firebaseio.com/')
 fb_contests = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests')
@@ -120,18 +121,39 @@ def newElo(Ra, countA, Rb, countB, result):
 
     return int(round(newRa)), int(round(newRb))
 
+def alreadyUploadedOrSame(snip, creator, video):
+    dubs = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip, creator)).get()
+    not_uploaded = dubs == None
+    if not_uploaded:
+        return 'NOT_UPLOADED'
+
+    old_uuid = dubs['video']['uuid']
+    new_uuid = video['uuid']
+    return new_uuid == old_uuid
+
 def add_dub(video):
     print('=== Add dub ===')
     creator = video['creator']
     snip = video['snip']
 
-    entry = {
-         'elo': 1000,
-         'count': 0,
-         'video': video
-     }
-    result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).set(entry)
-    print result
+    same = alreadyUploadedOrSame(snip, creator, video)
+    if same == 'NOT_UPLOADED':
+        entry = {
+             'elo': 1000,
+             'count': 0,
+             'video': video
+         }
+        result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).update(entry)
+        print result
+    elif not same:
+        entry = {
+             'count': 0,
+             'video': video
+         }
+        result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).update(entry)
+        print result
+    else:
+        print('=== Already added dub ===')
 
 def import_all_dubs():
     print('=== Importing all dubs ===')
@@ -152,6 +174,9 @@ def import_all_dubs():
        add_dub(video)
     print('=== Finished importing all dubs ===')
 
-import_all_dubs()
-process_votes()
+while True:
+    import_all_dubs()
+    process_votes()
+    time.sleep(10)
+
 print('=== Finished ===')
