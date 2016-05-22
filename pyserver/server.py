@@ -154,3 +154,4 @@ def import_all_dubs():
 
 import_all_dubs()
 process_votes()
+print('=== Finished ===')
