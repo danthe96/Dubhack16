@@ -381,7 +381,7 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_versus" translatesAutoresizingMaskIntoConstraints="NO" id="4RQ-MB-qkA">
-                                <rect key="frame" x="188" y="356" width="224" height="224"/>
+                                <rect key="frame" x="188" y="368" width="224" height="224"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="224" id="DUG-D2-TO8"/>
                                     <constraint firstAttribute="height" constant="224" id="fdi-UM-XgG"/>
@@ -425,7 +425,7 @@
                             <constraint firstItem="Y4I-Gn-wce" firstAttribute="leading" secondItem="dZZ-gQ-IgG" secondAttribute="leadingMargin" constant="10" id="Nc3-3o-hnx"/>
                             <constraint firstItem="iDR-4a-9Ql" firstAttribute="leading" secondItem="dZZ-gQ-IgG" secondAttribute="leadingMargin" constant="8" id="XpK-F4-Xky"/>
                             <constraint firstItem="4RQ-MB-qkA" firstAttribute="centerY" secondItem="1N0-cF-FJI" secondAttribute="centerY" constant="123" id="Y3i-GZ-241"/>
-                            <constraint firstItem="bYe-7I-eNS" firstAttribute="top" secondItem="4RQ-MB-qkA" secondAttribute="bottom" constant="20" id="f4C-1q-Uav"/>
+                            <constraint firstItem="bYe-7I-eNS" firstAttribute="top" secondItem="4RQ-MB-qkA" secondAttribute="bottom" constant="8" id="f4C-1q-Uav"/>
                             <constraint firstItem="Y4I-Gn-wce" firstAttribute="top" secondItem="JS0-pG-LRi" secondAttribute="bottom" constant="10" id="gmq-NJ-B8c"/>
                             <constraint firstItem="1N0-cF-FJI" firstAttribute="leading" secondItem="dZZ-gQ-IgG" secondAttribute="leadingMargin" constant="-20" id="hZN-dH-4Ym"/>
                             <constraint firstItem="1N0-cF-FJI" firstAttribute="top" secondItem="dZZ-gQ-IgG" secondAttribute="topMargin" id="iBB-SI-YPc"/>
