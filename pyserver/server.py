@@ -14,10 +14,8 @@ URL = 'https://dubhack.dubsmash.com'
 
 CLIENT_ID = '***REMOVED***'
 CLIENT_SECRET = '***REMOVED***'
-USERNAME = '***REMOVED***'
+USERNAME = 'dubwarsbot'
 PASSWORD = '***REMOVED***'
-#USERNAME = 'dubwarsbot'
-#PASSWORD = '***REMOVED***'
 
 headers = {}
 
@@ -40,15 +38,14 @@ def login():
         'Content-Type': 'application/json'
     }
     print('Got headers')
-    
+
 def get_groups():
-    results = requests.get('{0}/me/groups/').json()['0']['results']
+    results = requests.get('{0}/me/groups'.format(URL), headers=headers).json()['results']
     group_uuids = map(lambda x: x['uuid'], results)
     print(group_uuids)
+    return group_uuids
 
-def get_dubs():
-    
-    group_uuid = '***REMOVED***'
+def get_dubs(group_uuid):
     get_dubs = requests.get('{0}/groups/{1}/dubs'.format(URL, group_uuid), headers=headers).json()
     return get_dubs['results']
 
@@ -65,8 +62,6 @@ def get_votes():
 def get_contest(snip, winner, loser):
     dubs = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/'.format(snip)).get()
     return dubs[winner], dubs[loser]
-
-
 
 def process_votes():
     print('=== Processing votes ===')
@@ -168,9 +163,9 @@ def add_dub(video):
     else:
         print('=== Already added dub ===')
 
-def import_all_dubs():
-    print('=== Importing all dubs ===')
-    dubs = get_dubs()
+def import_all_dubs(group):
+    print('=== Importing all dubs from {0} ==='.format(group))
+    dubs = get_dubs(group)
     contests = get_contests()
 
     for dub in dubs:
@@ -180,8 +175,9 @@ def import_all_dubs():
            print('No contest with this snip yet. Adding...')
            creator = video['creator']
            snip = video['snip']
-           contest = {snip: {'snipId': snip,'dubs': {}}}
-           result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/').update(contest)
+           if not snip:
+               continue
+           result = fb_contests.patch(contest)
            print(result)
 
        add_dub(video)
@@ -189,7 +185,9 @@ def import_all_dubs():
 
 login()
 while True:
-    import_all_dubs()
+    groups = get_groups()
+    for group in groups:
+        import_all_dubs(group)
     process_votes()
     time.sleep(10)
 
