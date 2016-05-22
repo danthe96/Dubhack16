@@ -39,9 +39,6 @@ class BattleViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
         
-        tieButton.clipsToBounds = true
-        tieButton.layer.cornerRadius = 32
-        
         // dirty hack
         let value = UIInterfaceOrientation.LandscapeRight.rawValue
         UIDevice.currentDevice().setValue(value, forKey: "orientation")
@@ -54,11 +51,6 @@ class BattleViewController: UIViewController {
         }
         //LoadingOverlay.shared.showOverlay(self.view)
         initializePlayers()
-        
-        let leftTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft(_:)))
-        leftOverlay.addGestureRecognizer(leftTap)
-        let rightTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight(_:)))
-        rightOverlay.addGestureRecognizer(rightTap)
         
         newRound()
         
@@ -190,9 +182,6 @@ class BattleViewController: UIViewController {
         }
     }
     
-
-
-    
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
     
@@ -201,12 +190,12 @@ class BattleViewController: UIViewController {
         UIView.animateWithDuration(0.25, animations: {
             self.leftOverlay.alpha = 1.0
             self.leftOverlay.tintColor = UIColor.greenColor()
+            self.leftOverlay.hidden = false
             }, completion: { _ in
                 self.newRound()
                 delay(0.25) {
                     UIView.animateWithDuration(0.25, animations: {
-                        self.leftOverlay.alpha = 0.0
-                        self.rightOverlay.tintColor = BattleViewController.colorLeft
+                        self.leftOverlay.hidden = true
                         }, completion: {_ in
                             self.startPlaybackWhenReady()
                     })
@@ -219,11 +208,11 @@ class BattleViewController: UIViewController {
         UIView.animateWithDuration(0.25, animations: {
             self.rightOverlay.alpha = 1.0
             self.rightOverlay.tintColor = UIColor.greenColor()
+            self.rightOverlay.hidden = false
             }, completion: { _ in
                 self.newRound()
                 UIView.animateWithDuration(0.25, animations: {
-                    self.rightOverlay.alpha = 0.0
-                    self.rightOverlay.tintColor = BattleViewController.colorRight
+                    self.rightOverlay.hidden = true
                     }, completion: {_ in
                         self.startPlaybackWhenReady()
                 })
