@@ -11,6 +11,7 @@ import FirebaseDatabase
 import SwiftyJSON
 import AVKit
 import AVFoundation
+import Spring
 
 class MainViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -118,6 +119,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegueWithIdentifier("showScoreboardSegue", sender: self)
     }
     
+    var playButtons = [AVPlayerItem: UIButton]()
+    var playersForItems = [AVPlayerItem: AVPlayer]()
     var runningPlayers = [String: AVPlayerLayer]()
     func playButtonClicked(sender: UIButton){
         if let clickedCell = sender.superview!.superview as? UITableViewCell,
@@ -139,6 +142,10 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 playButton.setImage(UIImage(named: "ic_pause"), forState: .Normal)
                 
                 let player = AVPlayer(URL: contest.dubs.first!.videoURL)
+                if let item = player.currentItem    {
+                    playButtons[item] = playButton
+                    playersForItems[item] = player
+                }
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(itemDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
                 
                 let playerLayer = AVPlayerLayer(player: player)
@@ -157,11 +164,17 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 
                 runningPlayers.updateValue(playerLayer, forKey: contest.id)
             }
+            if let videoView = videoView as? SpringView {
+                videoView.animate()
+            }
         }
     }
     
     func itemDidFinishPlaying(notification: NSNotification){
-//        notification.userInfo
+        if let object = notification.object as? AVPlayerItem, button = playButtons[object] {
+            button.setImage(UIImage(named: "ic_play"), forState: .Normal)
+            playersForItems[object]?.seekToTime(CMTimeMake(5, 100))
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

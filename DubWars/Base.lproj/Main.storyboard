@@ -49,9 +49,22 @@
                                                         <constraint firstAttribute="width" secondItem="vrG-Nm-4B9" secondAttribute="height" multiplier="1:1" id="uzX-mW-YS3"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view tag="107" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuN-rh-Vgr">
+                                                <view tag="107" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuN-rh-Vgr" customClass="SpringView" customModule="Spring">
                                                     <rect key="frame" x="20" y="6" width="89" height="89"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="animation" value="pop"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="force">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                            <real key="value" value="1.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgB-BC-2bx" userLabel="Play Sound">
                                                     <rect key="frame" x="41" y="27" width="48" height="48"/>
@@ -340,7 +353,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.90980392160000001" green="0.63137254899999995" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="xuk-Zv-Xdf" secondAttribute="trailing" id="3xv-lK-Hyg"/>
                                             <constraint firstAttribute="bottom" secondItem="xuk-Zv-Xdf" secondAttribute="bottom" id="ABw-2r-6KD"/>
@@ -394,7 +407,7 @@
                                                 </variation>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.73333333329999995" green="0.2470588235" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="sDG-Fk-G1Z" secondAttribute="bottom" id="IRn-ci-Ykp"/>
                                             <constraint firstItem="sDG-Fk-G1Z" firstAttribute="leading" secondItem="OTM-fO-tJr" secondAttribute="leading" id="JRs-0w-yib"/>
@@ -404,13 +417,8 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfz-Bk-SRt">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="TIE"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4I-Gn-wce">
-                                <rect key="frame" x="10" y="10" width="65" height="30"/>
+                                <rect key="frame" x="268" y="422" width="65" height="30"/>
                                 <color key="backgroundColor" red="0.55676333109537768" green="0.55676333109537768" blue="0.55676333109537768" alpha="0.6195893158783784" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2sH-Gs-V0w"/>
@@ -437,14 +445,12 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="backButton" destination="Y4I-Gn-wce" id="paH-vN-w3C"/>
                         <outlet property="leftOverlay" destination="xuk-Zv-Xdf" id="3Ib-xY-A7S"/>
                         <outlet property="leftSelectionLabel" destination="Neb-lH-Qi7" id="ysW-mx-jIO"/>
                         <outlet property="leftView" destination="AXA-Xd-dFo" id="6Lv-X4-hX6"/>
                         <outlet property="rightOverlay" destination="sDG-Fk-G1Z" id="tzz-yj-SmJ"/>
                         <outlet property="rightSelectionLabel" destination="gYO-a7-6pc" id="VYa-Zw-mPG"/>
                         <outlet property="rightView" destination="OTM-fO-tJr" id="Xis-Yh-KXh"/>
-                        <outlet property="tieButton" destination="sfz-Bk-SRt" id="ES5-mQ-cSI"/>
                         <segue destination="h8x-Nr-w4r" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMenu:" id="ykn-3T-lI5"/>
                     </connections>
                 </viewController>

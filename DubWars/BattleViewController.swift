@@ -26,12 +26,10 @@ class BattleViewController: UIViewController {
     
     @IBOutlet var leftView: UIView!
     @IBOutlet var rightView: UIView!
-    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet var leftOverlay: UIView!
     @IBOutlet var rightOverlay: UIView!
     
-    @IBOutlet var tieButton: UIButton!
     
     var myParentVC: UIViewController!
     
@@ -40,9 +38,6 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
-        
-        tieButton.clipsToBounds = true
-        tieButton.layer.cornerRadius = 32
         
         
         if let contest = contest {
@@ -122,7 +117,6 @@ class BattleViewController: UIViewController {
         
         let leftTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleLeftTap:"))
         leftView.addGestureRecognizer(leftTapGesture)
-        
         let rightTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleRightTap:"))
         rightView.addGestureRecognizer(rightTapGesture)
         
@@ -130,7 +124,7 @@ class BattleViewController: UIViewController {
     
     func checkVideosLeft () {
         if videos?.count <= 1 {
-            backButton.sendActionsForControlEvents(.TouchUpInside)
+            performSegueWithIdentifier("unwindToMenu", sender: nil)
         }
         else {
             newRound()
@@ -168,30 +162,24 @@ class BattleViewController: UIViewController {
         self.leftPlayer.play()
     }
     
-    func showVotingOverlay() {
-        
-        [leftOverlay, rightOverlay, tieButton].forEach {
-            $0.alpha = 0.0
-            $0.hidden = false
-        }
-        UIView.animateWithDuration(0.25) {
-            self.leftOverlay.alpha = 1.0
-            self.rightOverlay.alpha = 1.0
-            self.tieButton.alpha = 1.0
-            self.tieButton.hidden = false
-        }
-    }
-    
-    func hideVotingOverlay() {
-        UIView.animateWithDuration(0.25) {
-            self.leftOverlay.alpha = 0.0
-            self.rightOverlay.alpha = 0.0
-            self.tieButton.alpha = 0.0
-            self.tieButton.hidden = true
-        }
-    }
-    
-
+//    func showVotingOverlay() {
+//        
+//        [leftOverlay, rightOverlay].forEach {
+//            $0.alpha = 0.0
+//            $0.hidden = false
+//        }
+//        UIView.animateWithDuration(0.25) {
+//            self.leftOverlay.alpha = 1.0
+//            self.rightOverlay.alpha = 1.0
+//        }
+//    }
+//    
+//    func hideVotingOverlay() {
+//        UIView.animateWithDuration(0.25) {
+//            self.leftOverlay.alpha = 0.0
+//            self.rightOverlay.alpha = 0.0
+//        }
+//    }
 
     
     @IBOutlet var leftSelectionLabel: UILabel!
@@ -200,13 +188,12 @@ class BattleViewController: UIViewController {
 
      func handleLeftTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.25, animations: {
-            self.leftOverlay.alpha = 1.0
-            self.leftOverlay.tintColor = UIColor.greenColor()
+            self.leftOverlay.backgroundColor = UIColor(redInt: 0x45, greenInt: 0x8B, blueInt: 0x00, alphaInt: 0x80)
+            self.leftOverlay.hidden = false
             }, completion: { _ in
                 delay(0.25) {
                     UIView.animateWithDuration(0.25, animations: {
-                        self.leftOverlay.alpha = 0.0
-                        self.rightOverlay.tintColor = BattleViewController.colorLeft
+                        self.leftOverlay.hidden = true
                         }, completion: {_ in
                             self.checkVideosLeft()
                     })
@@ -217,13 +204,12 @@ class BattleViewController: UIViewController {
     
      func handleRightTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.25, animations: {
-            self.rightOverlay.alpha = 1.0
-            self.rightOverlay.tintColor = UIColor.greenColor()
+            self.rightOverlay.backgroundColor = UIColor(redInt: 0x45, greenInt: 0x8B, blueInt: 0x00, alphaInt: 0x80)
+            self.rightOverlay.hidden = false
             }, completion: { _ in
                 self.checkVideosLeft()
                 UIView.animateWithDuration(0.25, animations: {
-                    self.rightOverlay.alpha = 0.0
-                    self.rightOverlay.tintColor = BattleViewController.colorRight
+                    self.rightOverlay.hidden = true
                     }, completion: {_ in
                         self.checkVideosLeft()
                 })
