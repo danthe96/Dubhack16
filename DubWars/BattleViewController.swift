@@ -56,10 +56,6 @@ class BattleViewController: UIViewController {
         //LoadingOverlay.shared.showOverlay(self.view)
         initializePlayers()
         
-        let leftTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectLeft(_:)))
-        leftOverlay.addGestureRecognizer(leftTap)
-        let rightTap = UITapGestureRecognizer(target: self, action: #selector(BattleViewController.didSelectRight(_:)))
-        rightOverlay.addGestureRecognizer(rightTap)
         
         newRound()
         
