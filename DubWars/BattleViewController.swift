@@ -11,6 +11,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import Firebase
+import FirebaseDatabase
 
 class BattleViewController: UIViewController {
     
@@ -51,12 +52,15 @@ class BattleViewController: UIViewController {
     
     let semaphore = dispatch_semaphore_create(0)
     
+    var dub1, dub2: Dub?
     func newRound() {
         if videos.count == 0 {
             self.navigationController!.popViewControllerAnimated(true)
             return
         }
         let (dub1, dub2) = videos.removeLast()
+        self.dub1 = dub1
+        self.dub2 = dub2
         
         // Create local filesystem URL
         NSURLSession.sharedSession().dataTaskWithURL(dub1.videoURL, completionHandler: { data1, response, error in
@@ -167,13 +171,27 @@ class BattleViewController: UIViewController {
         UIView.animateWithDuration(0.25) {
             self.leftSelectionLabel.alpha = 1.0
         }
-        //TODO: save
+        submitVoting(forId: contest!.id, winningUser: dub1!.user, losingUser: dub2!.user)
     }
     
     @IBAction func didSelectRight(sender: AnyObject) {
         UIView.animateWithDuration(0.25) {
             self.rightSelectionLabel.alpha = 1.0
         }
+        submitVoting(forId: contest!.id, winningUser: dub2!.user, losingUser: dub1!.user)
+    }
+    
+    private let database = FIRDatabase.database().reference()
+    
+    
+    func submitVoting(forId id: String, winningUser: String, losingUser: String)    {
+        let votes = database.child("dubwars").child("votes")
+        let key = votes.childByAutoId().key
+        let entry = ["snipID": id,
+                     "winner": winningUser,
+                     "loser": losingUser]
+        let updates = ["/\(key)": entry]
+        votes.updateChildValues(updates)
     }
     
 }

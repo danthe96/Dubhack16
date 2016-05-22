@@ -213,6 +213,9 @@
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="12" maxX="16" maxY="20"/>
                                 <state key="normal" image="battle"/>
+                                <connections>
+                                    <segue destination="Snu-AL-kgh" kind="show" identifier="showBattleSegue" id="57Q-N6-yPH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -441,12 +444,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="battle" width="1200" height="1200"/>
+        <image name="battle" width="1560" height="1560"/>
         <image name="ic_add" width="32" height="32"/>
         <image name="ic_play" width="32" height="32"/>
         <image name="starwars.jpg" width="1500" height="1493"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJd-3R-rZk"/>
+        <segue reference="57Q-N6-yPH"/>
     </inferredMetricsTieBreakers>
 </document>
