@@ -137,29 +137,32 @@ def alreadyUploadedOrSame(snip, creator, video):
 
     old_uuid = dubs['video']['uuid']
     new_uuid = video['uuid']
+    #print 'old: {0}, new:{1}'.format(old_uuid, new_uuid)
     return new_uuid == old_uuid
 
 def add_dub(video):
-    print('=== Add dub ===')
     creator = video['creator']
     snip = video['snip']
+    print('=== Add dub from {0} {1} ==='.format(creator, snip))
 
     same = alreadyUploadedOrSame(snip, creator, video)
     if same == 'NOT_UPLOADED':
+        print 'Not uploaded yet'
         entry = {
              'elo': 1000,
              'count': 0,
              'video': video
          }
         result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).update(entry)
-        print(result)
-    elif not same:
+        #print(result)
+    elif not same and not snip in processed:
+        print 'Changed'
         entry = {
              'count': 0,
              'video': video
          }
         result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).update(entry)
-        print(result)
+        #print(result)
     else:
         print('=== Already added dub ===')
 
@@ -168,7 +171,7 @@ def import_all_dubs(group):
     dubs = get_dubs(group)
     contests = get_contests()
 
-    for dub in dubs:
+    for dub in reversed(dubs):
        video = dub['video']
 
        if not video['snip'] in contests:
@@ -181,10 +184,13 @@ def import_all_dubs(group):
            print(result)
 
        add_dub(video)
+       processed.append(video['snip'])
     print('=== Finished importing all dubs ===')
 
+processed = []
 login()
 while True:
+    changed = []
     groups = get_groups()
     for group in groups:
         import_all_dubs(group)
