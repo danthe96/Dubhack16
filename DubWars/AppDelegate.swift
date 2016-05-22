@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 //        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "logo.png"), forBarPosition: .Top, barMetrics: UIBarMetrics.Default)
-        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "logo.png")!.resizableImageWithCapInsets(UIEdgeInsetsMake(16, 24, 0, 24), resizingMode: .Stretch), forBarPosition: .Any, barMetrics: .Default)
         DubsmashClient.instance.login("***REMOVED***", password: "***REMOVED***", callback: {_ in})
         
         return true
