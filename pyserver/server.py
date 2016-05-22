@@ -16,8 +16,12 @@ CLIENT_ID = '***REMOVED***'
 CLIENT_SECRET = '***REMOVED***'
 USERNAME = '***REMOVED***'
 PASSWORD = '***REMOVED***'
+#USERNAME = 'dubwarsbot'
+#PASSWORD = '***REMOVED***'
 
-def get_dubs():
+headers = {}
+
+def login():
     login_data = {
         'username': USERNAME,
         'password': PASSWORD,
@@ -29,12 +33,21 @@ def get_dubs():
     # Login to get access token
     login_response = requests.post('{0}/me/login'.format(URL), json=login_data)
     access_token = login_response.json()['access_token']
-
+    global headers
     # Creating the Authorization header for following requests
     headers = {
         'Authorization': 'Bearer {0}'.format(access_token),
         'Content-Type': 'application/json'
     }
+    print('Got headers')
+    
+def get_groups():
+    results = requests.get('{0}/me/groups/').json()['0']['results']
+    group_uuids = map(lambda x: x['uuid'], results)
+    print(group_uuids)
+
+def get_dubs():
+    
     group_uuid = '***REMOVED***'
     get_dubs = requests.get('{0}/groups/{1}/dubs'.format(URL, group_uuid), headers=headers).json()
     return get_dubs['results']
@@ -144,14 +157,14 @@ def add_dub(video):
              'video': video
          }
         result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).update(entry)
-        print result
+        print(result)
     elif not same:
         entry = {
              'count': 0,
              'video': video
          }
         result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).update(entry)
-        print result
+        print(result)
     else:
         print('=== Already added dub ===')
 
@@ -169,11 +182,12 @@ def import_all_dubs():
            snip = video['snip']
            contest = {snip: {'snipId': snip,'dubs': {}}}
            result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/').update(contest)
-           print result
+           print(result)
 
        add_dub(video)
     print('=== Finished importing all dubs ===')
 
+login()
 while True:
     import_all_dubs()
     process_votes()
