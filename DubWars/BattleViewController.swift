@@ -35,7 +35,6 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
-        customizeBackButton()
         
         // dirty hack
         let value = UIInterfaceOrientation.LandscapeRight.rawValue
@@ -178,15 +177,8 @@ class BattleViewController: UIViewController {
         }
     }
     
-    @IBOutlet var backButton: UIButton!
-    func customizeBackButton() {
-        backButton.clipsToBounds = true
-        backButton.layer.cornerRadius = backButton.bounds.height/2
-        backButton.userInteractionEnabled = true
-    }
-    @IBAction func didSelectBackButton(sender: AnyObject) {
-        self.navigationController!.popToViewController(myParentVC, animated: true)
-    }
+
+
     
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
@@ -234,7 +226,11 @@ class BattleViewController: UIViewController {
         let updates = ["/\(key)": entry]
         votes.updateChildValues(updates)
     }
-    //    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-//        return .Landscape
-//    }
+
+     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Landscape
+  }
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 }
