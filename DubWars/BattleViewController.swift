@@ -114,6 +114,12 @@ class BattleViewController: UIViewController {
         leftView.layer.insertSublayer(leftPlayerLayer, below: leftOverlay.layer)
         rightView.layer.insertSublayer(rightPlayerLayer, below: rightOverlay.layer)
         
+        let leftTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleLeftTap:"))
+        leftView.addGestureRecognizer(leftTapGesture)
+        
+        let rightTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleRightTap:"))
+        rightView.addGestureRecognizer(rightTapGesture)
+        
     }
     
     func loadVideos(urls: (NSURL, NSURL)) {
@@ -138,7 +144,11 @@ class BattleViewController: UIViewController {
     }
     
     func playerDidFinishPlaying() {
-        showVotingOverlay()
+        let t1 = CMTimeMake(5, 100);
+        self.leftPlayer.seekToTime(t1)
+        self.rightPlayer.seekToTime(t1)
+        self.rightPlayer.play()
+        self.leftPlayer.play()
     }
     
     func showVotingOverlay() {
@@ -166,21 +176,6 @@ class BattleViewController: UIViewController {
     @IBOutlet var leftSelectionLabel: UILabel!
     @IBOutlet var rightSelectionLabel: UILabel!
     
-    @IBAction func didSelectLeft(sender: AnyObject) {
-        UIView.animateWithDuration(0.25) {
-            self.leftSelectionLabel.alpha = 1.0
-        }
-        submitVoting(forId: contest!.id, winningUser: dub1!.user, losingUser: dub2!.user)
-        newRound()
-    }
-    
-    @IBAction func didSelectRight(sender: AnyObject) {
-        UIView.animateWithDuration(0.25) {
-            self.rightSelectionLabel.alpha = 1.0
-        }
-        submitVoting(forId: contest!.id, winningUser: dub2!.user, losingUser: dub1!.user)
-        newRound()
-    }
     
     private let database = FIRDatabase.database().reference()
     
@@ -194,5 +189,20 @@ class BattleViewController: UIViewController {
         let updates = ["/\(key)": entry]
         votes.updateChildValues(updates)
     }
+    
+    func handleLeftTap(sender: UITapGestureRecognizer) {
+        UIView.animateWithDuration(0.25) {
+            self.leftSelectionLabel.alpha = 1.0
+        }
+        submitVoting(forId: contest!.id, winningUser: dub1!.user, losingUser: dub2!.user)
+        newRound()
+    }
+    
+    func handleRightTap(sender: UITapGestureRecognizer) {
+        UIView.animateWithDuration(0.25) {
+            self.rightSelectionLabel.alpha = 1.0
+        }
+        submitVoting(forId: contest!.id, winningUser: dub2!.user, losingUser: dub1!.user)
+        newRound()    }
     
 }
