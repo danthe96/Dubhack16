@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fVe-Kx-VCc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fVe-Kx-VCc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LGU-5g-0bK" id="ugr-eG-kOI">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="101"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="78Y-gf-KVG" userLabel="Sound name">
@@ -90,12 +90,10 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uuw-hO-aEr">
                                 <rect key="frame" x="236" y="402" width="128" height="128"/>
-                                <color key="backgroundColor" red="0.65098065140000005" green="0.035293892030000003" blue="0.086274489760000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="ana-fH-n6w"/>
                                     <constraint firstAttribute="height" constant="128" id="esw-t2-mey"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="12" maxX="16" maxY="20"/>
                                 <state key="normal" image="battle"/>
                                 <connections>
                                     <segue destination="Snu-AL-kgh" kind="show" identifier="showBattleSegue" id="VJd-3R-rZk"/>
@@ -156,7 +154,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="108"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cdg-QS-Trt" id="QdL-X1-Zrq">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="108"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" numberOfLines="102" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISx-TP-q3X">
@@ -199,12 +197,10 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ben-Tc-L0Z">
                                 <rect key="frame" x="236" y="358" width="128" height="128"/>
-                                <color key="backgroundColor" red="0.65098065140000005" green="0.035293892030000003" blue="0.086274489760000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="2g6-2r-UKA"/>
                                     <constraint firstAttribute="height" constant="128" id="EqZ-yF-9cJ"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="12" maxX="16" maxY="20"/>
                                 <state key="normal" image="battle"/>
                                 <connections>
                                     <segue destination="Snu-AL-kgh" kind="show" identifier="showBattleSegue" id="57Q-N6-yPH"/>
@@ -285,10 +281,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1N0-cF-FJI">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AXA-Xd-dFo">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="492"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="536"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-Zv-Xdf">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
@@ -329,7 +325,7 @@
                                         <color key="backgroundColor" red="0.035436142235994339" green="0.38817042112350464" blue="0.97200483083724976" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-fO-tJr">
-                                        <rect key="frame" x="300" y="0.0" width="300" height="492"/>
+                                        <rect key="frame" x="300" y="0.0" width="300" height="536"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDG-Fk-G1Z">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="536"/>
@@ -435,6 +431,6 @@
         <image name="starwars.jpg" width="1500" height="1493"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJd-3R-rZk"/>
+        <segue reference="57Q-N6-yPH"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -27,8 +27,6 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        battleButton.layer.cornerRadius = battleButton.frame.width/2
-        battleButton.clipsToBounds = true
         
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
