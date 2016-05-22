@@ -17,7 +17,7 @@ class Contest {
     init(json: JSON) {
         self.id = json["snipId"].string!
         self.name = json["name"].string!
-        self.dubs = json["dubs"].dictionary!.values.flatMap {Dub(json: $0["video"])}
+        self.dubs = json["dubs"].dictionary!.values.flatMap {Dub(json: $0["video"], elo: $0["elo"].int!)}.sort({$0.elo > $1.elo})
     }
     
     func createBattle() -> [(Dub, Dub)] {
@@ -42,20 +42,23 @@ class Dub {
     let videoURL: NSURL
     let snipID: String
     let user: String
+    let elo: Int
     
     var timesSelected = 0
     
-    init(thumbnailURL: NSURL, videoURL: NSURL, snipID: String, user: String) {
+    init(thumbnailURL: NSURL, videoURL: NSURL, snipID: String, user: String, elo: Int) {
         self.thumbnailURL = thumbnailURL
         self.videoURL = videoURL
         self.snipID = snipID
         self.user = user
+        self.elo = elo
     }
     
-    init(json: JSON) {
+    init(json: JSON, elo:Int) {
         self.thumbnailURL = NSURL(string: json["thumbnail"].stringValue)!
         self.videoURL = NSURL(string: json["video"].stringValue)!
         self.user = json["creator"].string!
         self.snipID = json["snip"].string!
+        self.elo = elo
     }
 }
