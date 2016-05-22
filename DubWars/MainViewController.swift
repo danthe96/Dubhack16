@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SwiftyJSON
+import AVKit
+import AVFoundation
 
 class MainViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -19,14 +21,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     private var contestsHandle:FIRDatabaseHandle? = nil
     
-     private var selectedContest:Contest?
+    private var selectedContest:Contest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        battleButton.layer.cornerRadius = battleButton.frame.width/2
-        battleButton.clipsToBounds = true
         
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
@@ -42,7 +42,22 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
-    private var contests = [Contest]()
+    private var contests = [Contest]() {
+        didSet {
+            updateBattleVisibility()
+        }
+    }
+    
+    func updateBattleVisibility() {
+        for contest in contests {
+            if contest.dubs.count > 1   {
+                battleButton.hidden = false
+                return
+            }
+            battleButton.hidden = true
+        }
+    }
+    
     internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         self.contests = Globals.contests
         return contests.count
@@ -53,7 +68,10 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
             contest = contests[safe: indexPath.row]{
             
             let thumbnail = cell.viewWithTag(101) as! UIImageView
+            let playButton = cell.viewWithTag(104) as! UIButton
             if let firstDub = contest.dubs.first {
+                playButton.addTarget(self, action: #selector(MainViewController.playButtonClicked(_:)), forControlEvents: .TouchUpInside)
+                
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                     if let data = NSData(contentsOfURL: firstDub.thumbnailURL){
                         dispatch_async(dispatch_get_main_queue(), {
@@ -68,15 +86,8 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 })
             }
             
-            //TODO
-            
-            let contestTitle = cell.viewWithTag(102) as! UILabel
-            contestTitle.text = contest.name
-            
             let snipID = contest.id
             let soundName = cell.viewWithTag(103) as! UILabel
-            let playButton = cell.viewWithTag(104) as! UIButton
-            playButton.addTarget(self, action: #selector(MainViewController.playButtonClicked(_:)), forControlEvents: .TouchUpInside)
             if let snip = Globals.snips[snipID]{
                 soundName.text = snip["name"].string ?? "Sound name"
             } else{
@@ -84,9 +95,6 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                     soundName.text = snip["name"].string ?? "Sound name"
                 })
             }
-            
-            let submitButton = cell.viewWithTag(105) as! UIButton
-            //TODO
             
             return cell
         }
@@ -100,15 +108,57 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegueWithIdentifier("showScoreboardSegue", sender: self)
     }
     
+    var runningPlayers = [String: AVPlayerLayer]()
     func playButtonClicked(sender: UIButton){
-        
+        if let clickedCell = sender.superview!.superview as? UITableViewCell,
+            let indexPath = tableView.indexPathForCell(clickedCell),
+            let contest = contests[safe: indexPath.row] where contest.dubs.count > 0{
+            
+            let videoView = clickedCell.viewWithTag(107)!
+            let playButton = clickedCell.viewWithTag(104) as! UIButton
+            if let videoPlayer = runningPlayers[contest.id]{
+                if(videoPlayer.player?.rate == 0){
+                    playButton.setImage(UIImage(named: "ic_pause"), forState: .Normal)
+                    videoPlayer.player?.play()
+                } else{
+                    playButton.setImage(UIImage(named: "ic_play"), forState: .Normal)
+                    videoPlayer.player?.pause()
+                }
+                
+            } else{
+                playButton.setImage(UIImage(named: "ic_pause"), forState: .Normal)
+                
+                let player = AVPlayer(URL: contest.dubs.first!.videoURL)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(itemDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
+                
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = videoView.bounds
+                
+                playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            
+                videoView.layer.insertSublayer(playerLayer, above: videoView.layer)
+                videoView.layer.cornerRadius = videoView.frame.width/2
+                videoView.clipsToBounds = true
+                player.play()
+                
+                if(runningPlayers.count > 12){
+                    
+                }
+                
+                runningPlayers.updateValue(playerLayer, forKey: contest.id)
+            }
+        }
+    }
+    
+    func itemDidFinishPlaying(notification: NSNotification){
+//        notification.userInfo
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showBattleSegue" {
             if let destination = segue.destinationViewController as? BattleViewController {
-                // TODO nichts übergeben bzw contest = all oder sowas
-                let randomContest = contests[safe: Int(arc4random_uniform(UInt32(contests.count)))]
+                let eligibleContests = contests.filter {$0.dubs.count > 1}
+                let randomContest = eligibleContests[safe: Int(arc4random_uniform(UInt32(contests.count)))]
                 destination.contest = randomContest
             }
         } else if segue.identifier == "showScoreboardSegue" {

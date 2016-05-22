@@ -22,13 +22,21 @@ class ScoreboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         battleButton.layer.cornerRadius = battleButton.frame.width/2
         battleButton.clipsToBounds = true
         
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
         
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+        self.navigationItem.title = Globals.snips[contest.id]?["name"].string ?? "test"
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "logo.png")!.resizableImageWithCapInsets(UIEdgeInsetsMake(16, 24, 0, 24), resizingMode: .Stretch), forBarPosition: .Any, barMetrics: .Default)
+        
+        super.viewWillDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
