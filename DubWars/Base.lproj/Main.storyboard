@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fVe-Kx-VCc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fVe-Kx-VCc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -161,7 +161,6 @@
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dubCell" id="Z1H-tb-Ukg">
                                         <rect key="frame" x="0.0" y="28" width="600" height="108"/>
-
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z1H-tb-Ukg" id="4rv-34-RIU">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
@@ -299,10 +298,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="30"/>
                                 <state key="normal" title="Segue"/>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1N0-cF-FJI">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1N0-cF-FJI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AXA-Xd-dFo">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXA-Xd-dFo">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-Zv-Xdf">
@@ -349,7 +348,7 @@
                                             <constraint firstItem="xuk-Zv-Xdf" firstAttribute="leading" secondItem="AXA-Xd-dFo" secondAttribute="leading" id="e7g-4m-zDq"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-fO-tJr">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-fO-tJr">
                                         <rect key="frame" x="300" y="0.0" width="300" height="600"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDG-Fk-G1Z">
@@ -421,7 +420,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="h8x-Nr-w4r" kind="unwind" unwindAction="prepareForUnwind:" id="EkN-0k-Wjn"/>
+                                    <segue destination="h8x-Nr-w4r" kind="unwind" identifier="exit" unwindAction="prepareForUnwind:" id="EkN-0k-Wjn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -482,6 +481,6 @@
         <image name="starwars.jpg" width="1500" height="1493"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="57Q-N6-yPH"/>
+        <segue reference="VJd-3R-rZk"/>
     </inferredMetricsTieBreakers>
 </document>

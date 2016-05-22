@@ -32,6 +32,7 @@ class BattleViewController: UIViewController {
     var myParentVC: UIViewController!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
@@ -59,7 +60,7 @@ class BattleViewController: UIViewController {
     func newRound() {
         semaphore = dispatch_semaphore_create(0)
         if videos?.count == 0 {
-            self.navigationController!.popToViewController(myParentVC, animated: true)
+            self.performSegueWithIdentifier("exit", sender: self)
             return
         }
         let (dub1, dub2) = videos!.removeLast()
