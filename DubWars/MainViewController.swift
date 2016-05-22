@@ -133,10 +133,12 @@ class MainViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 
                 let playerLayer = AVPlayerLayer(player: player)
                 playerLayer.frame = videoView.bounds
-                playerLayer.cornerRadius = playerLayer.frame.width/2
+                
                 playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
             
                 videoView.layer.insertSublayer(playerLayer, above: videoView.layer)
+                videoView.layer.cornerRadius = videoView.frame.width/2
+                videoView.clipsToBounds = true
                 player.play()
                 
                 if(runningPlayers.count > 12){
