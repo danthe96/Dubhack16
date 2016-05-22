@@ -22,7 +22,6 @@ class ScoreboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        snipId = contest.id
         
         battleButton.layer.cornerRadius = battleButton.frame.width/2
         battleButton.clipsToBounds = true
@@ -38,7 +37,7 @@ class ScoreboardViewController: UIViewController {
     }
 
     @IBAction func addDub(sender: AnyObject) {
-        if let url = NSURL(string: "https://dbsm.sh/s/\(snipId)"){
+        if let url = NSURL(string: "https://dbsm.sh/s/\(contest.id)"){
             print(url)
             UIApplication.sharedApplication().openURL(url)
         }
