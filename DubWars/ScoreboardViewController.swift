@@ -30,14 +30,16 @@ class ScoreboardViewController: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 150, 0)
-        
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
-        self.navigationItem.title = Globals.snips[contest.id]?["name"].string ?? "test"
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+        self.navigationItem.title = Globals.snips[contest.id]?["name"].string ?? "test"
+        
+        self.navigationItem.rightBarButtonItem?.image = UIImage(imageLiteral: "ic_dubsmash").imageWithRenderingMode(.AlwaysOriginal)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -82,8 +84,30 @@ class ScoreboardViewController: UIViewController {
             })
             
             let usernameLabel = cell.viewWithTag(102) as! UILabel
+            usernameLabel.text = "\(indexPath.row+1). \(dub.user)"
             
-            usernameLabel.text = dub.user
+            let trophy = cell.viewWithTag(103) as! UIImageView
+            if indexPath.row == 0{
+                trophy.hidden = false
+                
+                trophy.image = UIImage(imageLiteral: "ic_trophy_gold").imageWithRenderingMode(.AlwaysTemplate)
+                trophy.tintColor = UIColor(red: 218, green: 165, blue: 32)
+            } else if indexPath.row == 1{
+                trophy.hidden = false
+                
+                trophy.image = UIImage(imageLiteral: "ic_trophy_silver").imageWithRenderingMode(.AlwaysTemplate)
+                trophy.tintColor = UIColor(red: 192, green: 192, blue: 192)
+            } else if indexPath.row == 2{
+                trophy.hidden = false
+                
+                trophy.image = UIImage(imageLiteral: "ic_trophy_bronze").imageWithRenderingMode(.AlwaysTemplate)
+                trophy.tintColor = UIColor(red: 205, green: 127, blue: 50)
+            } else{
+                trophy.hidden = true
+            }
+            
+            let eloText = cell.viewWithTag(104) as! UILabel
+            eloText.text = "ELO: \(dub.elo)"
             
             return cell
         }
