@@ -26,6 +26,7 @@ class BattleViewController: UIViewController {
     
     @IBOutlet var leftView: UIView!
     @IBOutlet var rightView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet var leftOverlay: UIView!
     @IBOutlet var rightOverlay: UIView!
@@ -43,9 +44,6 @@ class BattleViewController: UIViewController {
         tieButton.clipsToBounds = true
         tieButton.layer.cornerRadius = 32
         
-        // dirty hack
-        let value = UIInterfaceOrientation.LandscapeRight.rawValue
-        UIDevice.currentDevice().setValue(value, forKey: "orientation")
         
         if let contest = contest {
             videos = contest.createBattle()
@@ -66,10 +64,6 @@ class BattleViewController: UIViewController {
     var dub1, dub2: Dub?
     func newRound() {
         semaphore = dispatch_semaphore_create(0)
-        if videos?.count == 0 {
-            self.performSegueWithIdentifier("exit", sender: self)
-            return
-        }
         let (dub1, dub2) = videos!.removeLast()
         self.dub1 = dub1
         self.dub2 = dub2
@@ -132,6 +126,16 @@ class BattleViewController: UIViewController {
         let rightTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleRightTap:"))
         rightView.addGestureRecognizer(rightTapGesture)
         
+    }
+    
+    func checkVideosLeft () {
+        if videos?.count <= 1 {
+            backButton.sendActionsForControlEvents(.TouchUpInside)
+        }
+        else {
+            newRound()
+            startPlaybackWhenReady()
+        }
     }
     
     func loadVideos(urls: (NSURL, NSURL)) {
@@ -199,13 +203,12 @@ class BattleViewController: UIViewController {
             self.leftOverlay.alpha = 1.0
             self.leftOverlay.tintColor = UIColor.greenColor()
             }, completion: { _ in
-                self.newRound()
                 delay(0.25) {
                     UIView.animateWithDuration(0.25, animations: {
                         self.leftOverlay.alpha = 0.0
                         self.rightOverlay.tintColor = BattleViewController.colorLeft
                         }, completion: {_ in
-                            self.startPlaybackWhenReady()
+                            self.checkVideosLeft()
                     })
                 }
         })
@@ -217,12 +220,12 @@ class BattleViewController: UIViewController {
             self.rightOverlay.alpha = 1.0
             self.rightOverlay.tintColor = UIColor.greenColor()
             }, completion: { _ in
-                self.newRound()
+                self.checkVideosLeft()
                 UIView.animateWithDuration(0.25, animations: {
                     self.rightOverlay.alpha = 0.0
                     self.rightOverlay.tintColor = BattleViewController.colorRight
                     }, completion: {_ in
-                        self.startPlaybackWhenReady()
+                        self.checkVideosLeft()
                 })
         })
         submitVoting(forId: dub1!.snipID, winningUser: dub2!.user, losingUser: dub1!.user)

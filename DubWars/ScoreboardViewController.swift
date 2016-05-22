@@ -22,6 +22,9 @@ class ScoreboardViewController: UIViewController {
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
     }
     
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

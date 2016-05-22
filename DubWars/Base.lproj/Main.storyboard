@@ -420,7 +420,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="h8x-Nr-w4r" kind="unwind" identifier="exit" unwindAction="prepareForUnwind:" id="EkN-0k-Wjn"/>
+                                    <segue destination="h8x-Nr-w4r" kind="unwind" identifier="" unwindAction="prepareForUnwind:" id="EkN-0k-Wjn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -437,6 +437,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="backButton" destination="Y4I-Gn-wce" id="paH-vN-w3C"/>
                         <outlet property="leftOverlay" destination="xuk-Zv-Xdf" id="3Ib-xY-A7S"/>
                         <outlet property="leftSelectionLabel" destination="Neb-lH-Qi7" id="ysW-mx-jIO"/>
                         <outlet property="leftView" destination="AXA-Xd-dFo" id="6Lv-X4-hX6"/>
@@ -444,6 +445,7 @@
                         <outlet property="rightSelectionLabel" destination="gYO-a7-6pc" id="VYa-Zw-mPG"/>
                         <outlet property="rightView" destination="OTM-fO-tJr" id="Xis-Yh-KXh"/>
                         <outlet property="tieButton" destination="sfz-Bk-SRt" id="ES5-mQ-cSI"/>
+                        <segue destination="h8x-Nr-w4r" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMenu:" id="ykn-3T-lI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zrW-qH-3nm" userLabel="First Responder" sceneMemberID="firstResponder"/>
