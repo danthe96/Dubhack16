@@ -1,12 +1,12 @@
-from firebase import firebase
+from firebase import Firebase
 import requests
 import os
 import hashlib
 import base64
 import math
 
-firebase = firebase.FirebaseApplication('https://project-***REMOVED***.firebaseio.com/', None)
-result = firebase.get('/dubwars', None)
+firebase = Firebase('https://project-***REMOVED***.firebaseio.com/')
+fb_contests = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests')
 #print result
 
 URL = 'https://dubhack.dubsmash.com'
@@ -15,8 +15,6 @@ CLIENT_ID = '***REMOVED***'
 CLIENT_SECRET = '***REMOVED***'
 USERNAME = '***REMOVED***'
 PASSWORD = '***REMOVED***'
-
-
 
 def get_dubs():
     login_data = {
@@ -38,8 +36,12 @@ def get_dubs():
     }
     group_uuid = '***REMOVED***'
     get_dubs = requests.get('{0}/groups/{1}/dubs'.format(URL, group_uuid), headers=headers).json()
-    print get_dubs
-    return get_dubs
+    return get_dubs['results']
+
+def get_contests():
+    contests = fb_contests.get()
+    #print contests
+    return contests
 
 def newElo(Ra, countA, Rb, countB, result):
     Ea = 1/(1 + math.pow(10, ((Rb-Ra)/400)))
@@ -73,3 +75,33 @@ def newElo(Ra, countA, Rb, countB, result):
     newRb = Rb + kb * (Sb - Eb)
 
     return int(round(newRa)), int(round(newRb))
+
+def add_dub(video):
+    creator = video['creator']
+    snip = video['snip']
+
+    entry = {
+         'elo': 1200,
+         'video': video
+     }
+    result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/{0}/dubs/{1}'.format(snip,creator)).set(entry)
+    print result
+
+def import_all_dubs():
+    dubs = get_dubs()
+    contests = get_contests()
+
+    for dub in dubs:
+       video = dub['video']
+
+       if not video['snip'] in contests:
+           print('No contest with this snip yet. Adding...')
+           creator = video['creator']
+           snip = video['snip']
+           contest = {snip: {'snipId': snip,'dubs': {}}}
+           result = Firebase('https://project-***REMOVED***.firebaseio.com/dubwars/contests/').update(contest)
+           print result
+
+       add_dub(video)
+
+import_all_dubs()

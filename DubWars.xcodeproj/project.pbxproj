@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37A0E2BD3CB3D4552D5E5AEC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E733C85EB8F8CB84510396 /* Pods.framework */; };
 		5FF4A22B15B22DCD88EA4D24 /* Pods_DubWars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59559ED15078F48D9C4E84F8 /* Pods_DubWars.framework */; };
 		707BE9181CF08A920071CB52 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9171CF08A920071CB52 /* ScoreboardViewController.swift */; };
 		707BE91A1CF08CD20071CB52 /* DubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707BE9191CF08CD20071CB52 /* DubDetailViewController.swift */; };
@@ -60,7 +59,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C36A7F931CF09D9B00ADC2C3 /* AVFoundation.framework in Frameworks */,
-				37A0E2BD3CB3D4552D5E5AEC /* Pods.framework in Frameworks */,
 				5FF4A22B15B22DCD88EA4D24 /* Pods_DubWars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
