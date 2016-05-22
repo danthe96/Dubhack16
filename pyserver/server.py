@@ -180,7 +180,8 @@ def import_all_dubs(group):
            snip = video['snip']
            if not snip:
                continue
-           result = fb_contests.patch(contest)
+           contest = {snip: {'snipId': snip,'dubs': {}}}
+           result = fb_contests.update(contest)
            print(result)
 
        add_dub(video)
