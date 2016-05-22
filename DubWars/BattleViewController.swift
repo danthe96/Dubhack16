@@ -30,15 +30,20 @@ class BattleViewController: UIViewController {
     @IBOutlet var leftOverlay: UIView!
     @IBOutlet var rightOverlay: UIView!
     
+    @IBOutlet var dubsmashLightsaber: UIImageView!
+    @IBOutlet var greenLightsaber: UIImageView!
     
     var myParentVC: UIViewController!
     
     
+    @IBOutlet var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
         
+        backButton.clipsToBounds = true
+        backButton.layer.cornerRadius = 12
         
         if let contest = contest {
             videos = contest.createBattle()
