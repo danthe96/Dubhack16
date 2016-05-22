@@ -245,8 +245,8 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title=" " id="eaB-VI-bPX">
                         <barButtonItem key="backBarButtonItem" title=" " id="YwG-Ka-2Tl"/>
-                        <barButtonItem key="rightBarButtonItem" image="ic_dubsmash" style="done" id="zYd-Q3-0xV">
-                            <inset key="imageInsets" minX="24" minY="24" maxX="16" maxY="24"/>
+                        <barButtonItem key="rightBarButtonItem" image="ic_dubsmash" style="plain" id="zYd-Q3-0xV">
+                            <inset key="imageInsets" minX="48" minY="36" maxX="8" maxY="28"/>
                             <connections>
                                 <action selector="addDub:" destination="t1y-Qv-Pp9" id="QOG-rz-epi"/>
                             </connections>

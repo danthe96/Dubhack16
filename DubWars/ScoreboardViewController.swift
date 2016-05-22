@@ -35,6 +35,8 @@ class ScoreboardViewController: UIViewController {
         
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
         self.navigationItem.title = Globals.snips[contest.id]?["name"].string ?? "test"
+        
+        self.navigationItem.rightBarButtonItem?.image = UIImage(imageLiteral: "ic_dubsmash").imageWithRenderingMode(.AlwaysOriginal)
     }
     
     override func viewWillDisappear(animated: Bool) {
